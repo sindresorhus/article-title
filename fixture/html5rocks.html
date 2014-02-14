@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en-us" dir="ltr" itemscope itemtype="http://schema.org/Article">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="A resource for developers looking to put HTML5 to use today, including information on specific features and when to use them in your apps.">
+<meta name="keywords" content="html5,html 5,html5 demos,html5 examples,javascript,css3,notifications,geolocation,web workers,apppcache,file api,filereader,indexeddb,offline,audio,video,drag and drop,chrome,sse,mobile">
+<title>Yo Polymer – A Whirlwind Tour Of Web Component Tooling - HTML5Rocks Updates</title>
+<script type='text/javascript'>window.mod_pagespeed_start = Number(new Date());</script><link rel="shortcut icon" href="http://www.html5rocks.com/favicon.ico">
+<link rel="alternate" type="application/rss+xml" title="HTML5Rocks RSS" href="http://feeds.feedburner.com/html5rocks"/>
+<link rel="stylesheet" media="all" href="http://www.html5rocks.com/static/css/base.css">
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,400italic,600,800|Source+Code+Pro" rel="stylesheet">
+<script src="http://www.html5rocks.com/static/js/modernizr.custom.82437.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script defer src="http://www.html5rocks.com/static/js/jquery.scrollTo-min.js"></script>
+<link rel="stylesheet" media="only screen and (max-width: 800px)" href="http://www.html5rocks.com/static/css/mobile.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+<link rel="apple-touch-icon" href="http://www.html5rocks.com/static/images/identity/HTML5_Badge_64.png">
+<link rel="apple-touch-icon-precomposed" href="http://www.html5rocks.com/static/images/identity/HTML5_Badge_64.png">
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5-els.js"></script>
+  <![endif]-->
+<link href="https://plus.google.com/111395306401981598462" rel="publisher"/>
+<style media="screen">.post-info{float:right}.postheader{margin-bottom:0em}.postfooter{clear:both;margin-top:1em}.time-author{margin-bottom:10px;color:hsl(0,0%,45%);font-style:italic}.time-author time{float:none;font-size:100%}.time-author a,.time-author a:visited{color:hsl(0,0%,19%);text-decoration:underline}.tag{color:hsl(240,20%,62%);margin-left:10px}.prevnext{border-top:3px double hsl(0,0%,80%);text-align:center}.prevnext a{padding:0 15px}</style>
+<meta itemprop="image" content="http://www.html5rocks.com/static/images/html5rocks-logo-wings.png">
+<link rel="dns-prefetch" href="//www.html5rocks.com"><link rel="dns-prefetch" href="//fonts.googleapis.com"><link rel="dns-prefetch" href="//ajax.googleapis.com"><link rel="dns-prefetch" href="//www.youtube.com"><link rel="dns-prefetch" href="//i.imgur.com"><link rel="dns-prefetch" href="//disqus.com"><link rel="dns-prefetch" href="//1-ps.googleusercontent.com"></head>
+<body onload="" class="pattern-bg"><noscript><meta HTTP-EQUIV="refresh" content="0;url='http://updates.html5rocks.com/2014/01/Yo-Polymer-A-Whirlwind-Tour-Of-Web-Component-Tooling?ModPagespeed=noscript'" /><style><!--table,div,span,font,p{display:none} --></style><div style="display:block">Please click <a href="http://updates.html5rocks.com/2014/01/Yo-Polymer-A-Whirlwind-Tour-Of-Web-Component-Tooling?ModPagespeed=noscript">here</a> if you are not redirected within a few seconds.</div></noscript>
+<header class="main">
+<a id="home_horns" href="http://www.html5rocks.com"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAyCAYAAABGQBuoAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NEU2NTFGRTQwNjE0MTFFMTg0RjdERTE0MzFDQTlGQjQiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NEU2NTFGRTUwNjE0MTFFMTg0RjdERTE0MzFDQTlGQjQiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo4MUQyMTY2QjA2MTMxMUUxODRGN0RFMTQzMUNBOUZCNCIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo4MUQyMTY2QzA2MTMxMUUxODRGN0RFMTQzMUNBOUZCNCIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PgNr19cAAAJFSURBVHja7FfrUcMwDE56/U/YIGxQJsBMQJmg6QTQCRomKBukGzBCywTpBikTpEwQJE4CxbFTOzF3cIfudM7Jsb5I1itRJKhpmhlw1XzTDjiJQhAqAq6JM+CcQUIBzEmhErJPkFAAHWUIpoOe0aFIT85nplEgQrfCUgjRGmTLIBbQ/X0FBTE+N5NABsxofYrj+ISMzygIBWClXwOwpvyo6K7QxwXLcN920DWK8JK3wCkpewBOSIaUeecBPKb0la2SIWSP+lktSVUrKiUA1aSaDpViTUyh2yebGCzBkMP6cwS+gpC7hnVJoZiFuGRWfgvKcY1gRV+fyO+DAS5oZeUnzapkVB2Rfjb0CC7j/ndAQixSB8uXcz9o7bnSlJQfe5SjRfewdxjinSklz7JHOdJ+bKm40eRzWleGTF1oFZQznQOkc8GcmZklADjRCq7xIgml7MVYGSgyShuIKGwVvZfbZIYPK6WSss8Sz7BXer0KCkJ66s5MFQLEVG37QPKByguXKU/2AuXg88oUTeeAJKGCVNtPheLKZLVLy3wGfgO+s+xjlr9iSfceM33vwfT+j48tsenCRIkepxzo7092LlG050HWgXY+harx+YWinGiR1w8IvL/RmoyklW3qcAEwdS6dkjGXzIffab2Mu7S3WTfkH63WKwIijHERTxlbw9aCppJB7U6SEvJMvLvjKBPNvxVFPonGc9MGaz41dOXtYIsFuRhF5OiCTWneZ4EXgEdz8gbgyXvD7ZMyNxM/g0aA/3J9lj4EGABt/PzEJtkxBQAAAABJRU5ErkJggg==" alt="HTML5 Rocks"></a>
+<h1 id="title">
+<a href="http://www.html5rocks.com" title="HTML5 Rocks">HTML5 Rocks</a>
+</h1>
+<nav>
+<ul>
+<li><a class="home" href="http://www.html5rocks.com">Home</a></li>
+<li><a href="http://www.html5rocks.com/tutorials/" class="tutorials">Posts &amp; Tutorials</a></li>
+<li id="features_show"><a href="#features">HTML5 Features</a></li>
+<li><a href="http://www.html5rocks.com/slides" class="slides">Slides</a></li>
+<li><a href="http://www.html5rocks.com/resources" class="resources">Resources</a></li>
+<li><a class="why" href="http://www.html5rocks.com/why">Why HTML5?</a></li>
+<li><a href="http://www.html5rocks.com/profiles" class="profiles" }>Who We Are</a></li>
+<li><a href="https://github.com/html5rocks/www.html5rocks.com/blob/master/CONTRIBUTING.md" target="_blank">Contribute</a></li>
+<li id="search_show">
+<a href="#search_form">
+Search
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAOCAYAAAAfSC3RAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RjM0OTMyOUNEN0FEMTFFMEJDMEZDMjAwMjNDNjc0MDciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RjM0OTMyOUREN0FEMTFFMEJDMEZDMjAwMjNDNjc0MDciPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpFNzMzOTM2MUQ3OTkxMUUwQkMwRkMyMDAyM0M2NzQwNyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpFNzMzOTM2MkQ3OTkxMUUwQkMwRkMyMDAyM0M2NzQwNyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pj/umaQAAACdSURBVHjanFLbDQMhDAtMwAiM0lFuBEa4DW4ERmk7ASPQDRghTSSfRKvAPSz5J45D5ODJADM/hE/+RRUuNIKKaGzCDUNSNyhbpgixCIOhZ+jrSIiTjfTl5v/qang55z40xlsYvCEEugqEcbSqplutcBrCiZNw0ugU+zm0cQWreY7OVHC7DDN39WVmCmcDyZdNMBbzGx3AiYnu4CvAALKABcbyDrXxAAAAAElFTkSuQmCC" width="14" height="14" alt="">
+</a>
+</li>
+</ul>
+</nav>
+<div class="subheader search" style="display: none;" id="search_form">
+<div class="search">
+<form action="http://www.html5rocks.com/en/search" id="cse-search-box" role="search">
+<img id="search_hide" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB0AAAAdCAYAAABWk2cPAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RjM0OTMyQTREN0FEMTFFMEJDMEZDMjAwMjNDNjc0MDciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RjM0OTMyQTVEN0FEMTFFMEJDMEZDMjAwMjNDNjc0MDciPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpGMzQ5MzJBMkQ3QUQxMUUwQkMwRkMyMDAyM0M2NzQwNyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpGMzQ5MzJBM0Q3QUQxMUUwQkMwRkMyMDAyM0M2NzQwNyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Ps3igWgAAAFzSURBVHjazJfPSsNAEMZ3EygoBAoepD0VBA+Cp76AvoCvkWfK0+gLeBI8FISc2lMhsFBBCPGbMKGrZP/qNh342LKdzI/Z7OxOpPCwruvmGEgX0OWIywH6hBopZeOKJx2wJYYraCb87QvaA74NggJG2dwEwsbgH4AfnFAAKbOV+D+rAd4boQmAo+BMAxaJgGQrjn+EYiJPCNTBuZ7ptWXTrKHCM3DB/mM2Y46QTL+HcoPzM7SDSkg5gBW0gB4NPi30lnHR55ZgJQeqLBnrwNISizjzAWqzjQP8G7hxxOuhPu/LBA4F9s9kjqW1gZcRwH6JaSOtA7f+rZatCgT+PBxOaVlkllRCTzxWPB8EbSOAtKRbHkPBbeYoeBNweEZFgBVBm0igiAQ3kxyDUmtLFgbHB+jV8zUMB/6L4f8dtTFSu9ru/tie+LQv74D2G0nQD7rdE5dnzZxjnWJCJQTXHP9MGrPJWtDJmu3knxUIePJb5luAAQDWPZwf40bkcAAAAABJRU5ErkJggg==" width="29" height="29" alt="">
+<label><span>Search:</span><input type="search" name="q" id="q" autocomplete="off" placeholder="HTML5Rocks"/></label>
+</form>
+</div>
+</div>
+<div class="subheader features" style="display: none;" id="features" tabindex="0">
+<div class="features">
+<img id="features_hide" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB0AAAAdCAYAAABWk2cPAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6RjM0OTMyQTREN0FEMTFFMEJDMEZDMjAwMjNDNjc0MDciIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6RjM0OTMyQTVEN0FEMTFFMEJDMEZDMjAwMjNDNjc0MDciPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpGMzQ5MzJBMkQ3QUQxMUUwQkMwRkMyMDAyM0M2NzQwNyIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpGMzQ5MzJBM0Q3QUQxMUUwQkMwRkMyMDAyM0M2NzQwNyIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Ps3igWgAAAFzSURBVHjazJfPSsNAEMZ3EygoBAoepD0VBA+Cp76AvoCvkWfK0+gLeBI8FISc2lMhsFBBCPGbMKGrZP/qNh342LKdzI/Z7OxOpPCwruvmGEgX0OWIywH6hBopZeOKJx2wJYYraCb87QvaA74NggJG2dwEwsbgH4AfnFAAKbOV+D+rAd4boQmAo+BMAxaJgGQrjn+EYiJPCNTBuZ7ptWXTrKHCM3DB/mM2Y46QTL+HcoPzM7SDSkg5gBW0gB4NPi30lnHR55ZgJQeqLBnrwNISizjzAWqzjQP8G7hxxOuhPu/LBA4F9s9kjqW1gZcRwH6JaSOtA7f+rZatCgT+PBxOaVlkllRCTzxWPB8EbSOAtKRbHkPBbeYoeBNweEZFgBVBm0igiAQ3kxyDUmtLFgbHB+jV8zUMB/6L4f8dtTFSu9ru/tie+LQv74D2G0nQD7rdE5dnzZxjnWJCJQTXHP9MGrPJWtDJmu3knxUIePJb5luAAQDWPZwf40bkcAAAAABJRU5ErkJggg==" width="29" height="29" alt="">
+<h2>Features</h2>
+<ul>
+<li>
+<a href="http://www.html5rocks.com/features/offline" class="offline">
+<h3>Offline</h3>
+</a>
+</li>
+<li>
+<a href="http://www.html5rocks.com/features/storage" class="storage">
+<h3>Storage</h3>
+</a>
+</li>
+<li>
+<a href="http://www.html5rocks.com/features/connectivity" class="connectivity">
+<h3>Connectivity</h3>
+</a>
+</li>
+<li>
+<a href="http://www.html5rocks.com/features/file_access" class="file_access">
+<h3>File Access</h3>
+</a>
+</li>
+<li>
+<a href="http://www.html5rocks.com/features/semantics" class="semantics">
+<h3>Semantics</h3>
+</a>
+</li>
+<li>
+<a href="http://www.html5rocks.com/features/multimedia" class="multimedia">
+<h3>Audio/Video</h3>
+</a>
+</li>
+<li>
+<a href="http://www.html5rocks.com/features/graphics" class="graphics">
+<h3>3D/Graphics</h3>
+</a>
+</li>
+<li>
+<a href="http://www.html5rocks.com/features/presentation" class="presentation">
+<h3>Presentation</h3>
+</a>
+</li>
+<li>
+<a href="http://www.html5rocks.com/features/performance" class="performance">
+<h3>Performance</h3>
+</a>
+</li>
+<li>
+<a href="http://www.html5rocks.com/features/nuts_and_bolts" class="nuts_and_bolts">
+<h3>Nuts &amp; Bolts</h3>
+</a>
+</li>
+</ul>
+</div>
+</div>
+</header>
+<a class="watermark" href="http://www.html5rocks.com"></a>
+<nav class="paginator home">
+<ul class="home">
+<li><a class="next" href="http://www.html5rocks.com/mobile">Mobile</a></li>
+</ul>
+<ul class="mobile">
+<li><a class="previous" href="http://www.html5rocks.com">Home</a></li>
+<li><a class="next" href="http://www.html5rocks.com/gaming">Gaming</a></li>
+</ul>
+<ul class="gaming">
+<li><a class="previous" href="http://www.html5rocks.com/mobile">Mobile</a></li>
+<li><a class="next" href="http://www.html5rocks.com/business">Business</a></li>
+</ul>
+<ul class="business">
+<li><a class="previous" href="http://www.html5rocks.com/gaming">Gaming</a></li>
+</ul>
+</nav>
+<nav class="paginator features">
+<ul class="offline">
+<li><a class="next" href="http://www.html5rocks.com/features/storage">Storage</a></li>
+</ul>
+<ul class="storage">
+<li><a class="previous" href="http://www.html5rocks.com/features/offline">Offline</a></li>
+<li><a class="next" href="http://www.html5rocks.com/features/connectivity">Connectivity</a></li>
+</ul>
+<ul class="connectivity">
+<li><a class="previous" href="http://www.html5rocks.com/features/storage">Storage</a></li>
+<li><a class="next" href="http://www.html5rocks.com/features/file_access">File Access</a></li>
+</ul>
+<ul class="file_access">
+<li><a class="previous" href="http://www.html5rocks.com/features/connectivity">Connectivity</a></li>
+<li><a class="next" href="http://www.html5rocks.com/features/semantics">Semantics</a></li>
+</ul>
+<ul class="semantics">
+<li><a class="previous" href="http://www.html5rocks.com/features/file_access">File Access</a></li>
+<li><a class="next" href="http://www.html5rocks.com/features/multimedia">Audio/Video</a></li>
+</ul>
+<ul class="multimedia">
+<li><a class="previous" href="http://www.html5rocks.com/features/semantics">Semantics</a></li>
+<li><a class="next" href="http://www.html5rocks.com/features/graphics">3D/Graphics</a></li>
+</ul>
+<ul class="graphics">
+<li><a class="previous" href="http://www.html5rocks.com/features/multimedia">Audio/Video</a></li>
+<li><a class="next" href="http://www.html5rocks.com/features/presentation">Presentation</a></li>
+</ul>
+<ul class="presentation">
+<li><a class="previous" href="http://www.html5rocks.com/features/graphics">3D/Graphics</a></li>
+<li><a class="next" href="http://www.html5rocks.com/features/performance">Performance</a></li>
+</ul>
+<ul class="performance">
+<li><a class="previous" href="http://www.html5rocks.com/features/presentation">Presentation</a></li>
+<li><a class="next" href="http://www.html5rocks.com/features/nuts_and_bolts">Nuts &amp; Bolts</a></li>
+</ul>
+<ul class="nuts_and_bolts">
+<li><a class="previous" href="http://www.html5rocks.com/features/performance">Performance</a></li>
+</ul>
+</nav>
+<div class="outline_nav_toggle deactivated">
+<img class="show" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB8AAAAeCAYAAADU8sWcAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OTAyRDZFQUJFOEVFMTFFMDg2NkJGNDlCNjE5NENEMzIiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OTAyRDZFQUNFOEVFMTFFMDg2NkJGNDlCNjE5NENEMzIiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5MDJENkVBOUU4RUUxMUUwODY2QkY0OUI2MTk0Q0QzMiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5MDJENkVBQUU4RUUxMUUwODY2QkY0OUI2MTk0Q0QzMiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pprl4SwAAAIcSURBVHjazFfNasJAEI6ptiIGBCUQbfAWxWu96EUfwAY8tg+gD1A8F+99gfoA9ijoA9he9GKvIt5EMRJyEFKKDQidlaSIyW5iYkgHhiyZzX4zk/nbEOWAJpNJGh4V4DudGYttn8Bz4EGxWJw7OTfkALQBXKPOIwTeASXeXYEDcEMH9kLIG21QYu0IHECRS1+BBeoypAI3rX4F7TMwpcdHF86uEsF9AD6mZ1BAsHQ7CJ7g8WB3wmazia1Wq7imaWHjXSaTUbPZrOpAAQn4EX6B+geuR3Wf9NVisWBGo9HtdruNWckjkci+UCjI5XJ5baMAyoLOMfgLPKq43cPhkJ/NZqwT3yYSie96vT6PRqN7QgCKyHpat/ps4FwuR7VaLdN+5JleryfsdrsrQgDWjICrkFzt1OJTBcbjcZqw5d4ArxIKDec2tJHSoMQ1RiygtKZxqYU+lGWZ8ZJb0+k0RRALNKZJUMvlkvGa2JIkxUngYWxNVNUbYy2KokmeSqUObCWDlKQURbGtfDQVIGEtZxjmx1j3++b6g1ItmUxaypw2HFpPehPxPK96tYzjuC9Sz6f1xm9VqTSWZT0pAOVWsQPHThtQAiW3wPl8XkYG4IAP5RUWH7gDUKdCh5wLjOp7qVQiNZhB4I3FAEdVrhtISw10mDhSoOvjGGUaJE8rXBOXeheg9ukEG+jo/L8uDRe8Lr0B6MD1Xc3vi+KvAAMAMUEG36eXLzcAAAAASUVORK5CYII=" alt="">
+<img class="hide" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB8AAAAeCAYAAADU8sWcAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNSBNYWNpbnRvc2giIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6OTAyRDZFQUZFOEVFMTFFMDg2NkJGNDlCNjE5NENEMzIiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6OTAyRDZFQjBFOEVFMTFFMDg2NkJGNDlCNjE5NENEMzIiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo5MDJENkVBREU4RUUxMUUwODY2QkY0OUI2MTk0Q0QzMiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo5MDJENkVBRUU4RUUxMUUwODY2QkY0OUI2MTk0Q0QzMiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PlXiDkoAAAIdSURBVHjaxFfNasJAEN6sSkUIBOLBFktF0Junek+96wOU3tt76716tw/Q3msfQO8a8GhP3iKIpdJ6MBAIiEWE7shaos1m18SfD4ZFd2a/mc3szqyEBNHtdq/IAJKlsgmDSjufz7dF1pQESG/JcE1ERuL4JtIgTrz4IiekEN0TkVPkH+BEhTjx7jaJGcQlMtQDEiNq/0zX40dOFR/R7lElO9Bgku+ReIWyMxklB/EZGV55iTWbzUL9fl+xbftk9Z8syz+ZTMaKRqMLDrlN5IY48AU/wo6Jey9iINV1/XwwGKhu851OB6XTaVPTtE8PJ2TKU/6LnER9CYnBIh6Px7Fms5mdz+ch3r5GIpFFsVg0EonE1EPtDk7AKttLuyAGgB7og52HWsl51DSWVqvVuhAldjoAdh4qSz5Mt9z1W/d6PdWyrJiftAY7sGd9e+DFjHt6ieFwqAQ5Vxz7LPbK8NFoFIicYy+HRRaJx+NIVVVhUtM00WQy4ephdEQIRQ5RiESyLTC98lyRTCatIItz7G1Muw9XpFKpQOQcewPTQu8afS6XMxVFmfohBjuwZ0XtvF511iKFQuED7uttiEEf7DxUdGe2N1haUCCgUIg6IFhY6pv1vEa7U18lFSBQUhHtbstHbyYkl968tsd7Za2PW7vhaH9VPQQxs2/fQyP5j5j3aIA6X9nBo+GBEBtBnkulLZ2AxHrz/Vw6xEPxV4ABAB9p/+75XTbuAAAAAElFTkSuQmCC" alt="">
+<nav class="outline features">
+<h3>HTML5 Features</h3>
+<ul>
+<li class="offline">
+<a href="http://www.html5rocks.com/features/offline" class="section_title offline">Offline</a>
+<ul>
+<li><a href="http://www.html5rocks.com/features/offline#intro">Intro</a></li>
+<li><a href="http://www.html5rocks.com/features/offline#support">Browser Support</a></li>
+<li><a href="http://www.html5rocks.com/features/offline#updates">What&rsquo;s New</a></li>
+<li><a href="http://www.html5rocks.com/features/offline#demos">Demos</a></li>
+<li><a href="http://www.html5rocks.com/features/offline#in_the_wild">In the Wild</a></li>
+<li><a href="http://www.html5rocks.com/features/offline#resources">Resources</a></li>
+</ul>
+</li>
+<li class="storage">
+<a href="http://www.html5rocks.com/features/storage" class="section_title storage">Storage</a>
+<ul>
+<li><a href="http://www.html5rocks.com/features/storage#intro">Intro</a></li>
+<li><a href="http://www.html5rocks.com/features/storage#support">Browser Support</a></li>
+<li><a href="http://www.html5rocks.com/features/storage#updates">What&rsquo;s New</a></li>
+<li><a href="http://www.html5rocks.com/features/storage#demos">Demos</a></li>
+<li><a href="http://www.html5rocks.com/features/storage#in_the_wild">In the Wild</a></li>
+<li><a href="http://www.html5rocks.com/features/storage#resources">Resources</a></li>
+</ul>
+</li>
+<li class="connectivity">
+<a href="http://www.html5rocks.com/features/connectivity" class="section_title connectivity">Connectivity</a>
+<ul>
+<li><a href="http://www.html5rocks.com/features/connectivity#intro">Intro</a></li>
+<li><a href="http://www.html5rocks.com/features/connectivity#support">Browser Support</a></li>
+<li><a href="http://www.html5rocks.com/features/connectivity#updates">What&rsquo;s New</a></li>
+<li><a href="http://www.html5rocks.com/features/connectivity#demos">Demos</a></li>
+<li><a href="http://www.html5rocks.com/features/connectivity#in_the_wild">In the Wild</a></li>
+<li><a href="http://www.html5rocks.com/features/connectivity#resources">Resources</a></li>
+</ul>
+</li>
+<li class="file_access">
+<a href="http://www.html5rocks.com/features/file_access" class="section_title file_access">File Access</a>
+<ul>
+<li><a href="http://www.html5rocks.com/features/file_access#intro">Intro</a></li>
+<li><a href="http://www.html5rocks.com/features/file_access#support">Browser Support</a></li>
+<li><a href="http://www.html5rocks.com/features/file_access#updates">What&rsquo;s New</a></li>
+<li><a href="http://www.html5rocks.com/features/file_access#demos">Demos</a></li>
+<li><a href="http://www.html5rocks.com/features/file_access#in_the_wild">In the Wild</a></li>
+<li><a href="http://www.html5rocks.com/features/file_access#resources">Resources</a></li>
+</ul>
+</li>
+<li class="semantics">
+<a href="http://www.html5rocks.com/features/semantics" class="section_title semantics">Semantics</a>
+<ul>
+<li><a href="http://www.html5rocks.com/features/semantics#intro">Intro</a></li>
+<li><a href="http://www.html5rocks.com/features/semantics#support">Browser Support</a></li>
+<li><a href="http://www.html5rocks.com/features/semantics#updates">What&rsquo;s New</a></li>
+<li><a href="http://www.html5rocks.com/features/semantics#demos">Demos</a></li>
+<li><a href="http://www.html5rocks.com/features/semantics#in_the_wild">In the Wild</a></li>
+<li><a href="http://www.html5rocks.com/features/semantics#resources">Resources</a></li>
+</ul>
+</li>
+<li class="multimedia">
+<a href="http://www.html5rocks.com/features/multimedia" class="section_title multimedia">Audio/Video</a>
+<ul>
+<li><a href="http://www.html5rocks.com/features/multimedia#intro">Intro</a></li>
+<li><a href="http://www.html5rocks.com/features/multimedia#support">Browser Support</a></li>
+<li><a href="http://www.html5rocks.com/features/multimedia#updates">What&rsquo;s New</a></li>
+<li><a href="http://www.html5rocks.com/features/multimedia#demos">Demos</a></li>
+<li><a href="http://www.html5rocks.com/features/multimedia#in_the_wild">In the Wild</a></li>
+<li><a href="http://www.html5rocks.com/features/multimedia#resources">Resources</a></li>
+</ul>
+</li>
+<li class="graphics">
+<a href="http://www.html5rocks.com/features/graphics" class="section_title graphics">3D/Graphics</a>
+<ul>
+<li><a href="http://www.html5rocks.com/features/graphics#intro">Intro</a></li>
+<li><a href="http://www.html5rocks.com/features/graphics#support">Browser Support</a></li>
+<li><a href="http://www.html5rocks.com/features/graphics#updates">What&rsquo;s New</a></li>
+<li><a href="http://www.html5rocks.com/features/graphics#demos">Demos</a></li>
+<li><a href="http://www.html5rocks.com/features/graphics#in_the_wild">In the Wild</a></li>
+<li><a href="http://www.html5rocks.com/features/graphics#resources">Resources</a></li>
+</ul>
+</li>
+<li class="presentation">
+<a href="http://www.html5rocks.com/features/presentation" class="section_title presentation">Presentation</a>
+<ul>
+<li><a href="http://www.html5rocks.com/features/presentation#intro">Intro</a></li>
+<li><a href="http://www.html5rocks.com/features/presentation#support">Browser Support</a></li>
+<li><a href="http://www.html5rocks.com/features/presentation#updates">What&rsquo;s New</a></li>
+<li><a href="http://www.html5rocks.com/features/presentation#demos">Demos</a></li>
+<li><a href="http://www.html5rocks.com/features/presentation#in_the_wild">In the Wild</a></li>
+<li><a href="http://www.html5rocks.com/features/presentation#resources">Resources</a></li>
+</ul>
+</li>
+<li class="performance">
+<a href="http://www.html5rocks.com/features/performance" class="section_title performance">Performance</a>
+<ul>
+<li><a href="http://www.html5rocks.com/features/performance#intro">Intro</a></li>
+<li><a href="http://www.html5rocks.com/features/performance#updates">What&rsquo;s New</a></li>
+<li><a href="http://www.html5rocks.com/features/performance#themes">Themes</a></li>
+<li><a href="http://www.html5rocks.com/features/performance#technologies">Technologies</a></li>
+<li><a href="http://www.html5rocks.com/features/performance#techniques">Techniques</a></li>
+<li><a href="http://www.html5rocks.com/features/performance#tools">Tools</a></li>
+<li><a href="http://www.html5rocks.com/features/performance#further_reading">Further Reading</a></li>
+</ul>
+</li>
+<li class="nuts_and_bolts">
+<a href="http://www.html5rocks.com/features/nuts_and_bolts" class="section_title nuts_and_bolts">Nuts &amp; Bolts</a>
+<ul>
+<li><a href="http://www.html5rocks.com/features/nuts_and_bolts#intro">Intro</a></li>
+<li><a href="http://www.html5rocks.com/features/nuts_and_bolts#support">Browser Support</a></li>
+<li><a href="http://www.html5rocks.com/features/nuts_and_bolts#updates">What&rsquo;s New</a></li>
+<li><a href="http://www.html5rocks.com/features/nuts_and_bolts#demos">Demos</a></li>
+<li><a href="http://www.html5rocks.com/features/nuts_and_bolts#in_the_wild">In the Wild</a></li>
+<li><a href="http://www.html5rocks.com/features/nuts_and_bolts#resources">Resources</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+<div class="page current loaded" id="">
+<section class="pattern-bg-lighter">
+<section class="postheader">
+<h2>Yo Polymer – A Whirlwind Tour Of Web Component Tooling</h2>
+<div class="time-author">By <a href="http://www.html5rocks.com/profiles/#addyosmani">Addy Osmani</a> at <time pubdate class="date">20 January, 2014</time></div>
+<div class="post-info">
+<div class="tags">
+<a href="/tag/front-end" class="tag">front-end</a>
+<a href="/tag/polymer" class="tag">polymer</a>
+<a href="/tag/web-components" class="tag">web components</a>
+<a href="/tag/tooling" class="tag">tooling</a>
+</div>
+</div>
+<div class="g-plusone" data-size="medium" data-count="true" data-href="http://updates.html5rocks.com/2014/01/Yo-Polymer-A-Whirlwind-Tour-Of-Web-Component-Tooling"></div>
+</section>
+<section>
+<p><a href="http://www.w3.org/TR/components-intro/">Web Components</a> are going to change everything you think you know about building for the web. For the first time, the web will have low level APIs allowing us to not only create our own HTML tags but also encapsulate logic and CSS. No more global stylesheet soup or boilerplate code! It’s a brave new world where everything is an element.
+</p>
+<p>In my talk from <a href="http://dotjs.eu">DotJS</a>, I walk through what Web Components have to offer and how to build them using modern tooling. I’ll show you <a href="http://yeoman.io">Yeoman</a>, a workflow of tools to streamline creating web-apps using <a href="http://dotjs.eu">Polymer</a>, a library of polyfills and sugar for developing apps using Web Components in modern browsers today.
+</p>
+<p><iframe width="640" height="360" src="//www.youtube.com/embed/booRxAJblwM" frameborder="0" allowfullscreen></iframe>
+</p>
+<h2>Create custom elements &amp; install elements created by others</h2>
+<p><strong>In this talk you will learn:</strong>
+</p>
+<ul>
+<li>
+About the four different specs composing Web Components: <a href="http://www.polymer-project.org/platform/custom-elements.html">Custom Elements</a>, <a href="http://www.polymer-project.org/platform/template.html">Templates</a>, <a href="http://www.polymer-project.org/platform/shadow-dom.html">Shadow DOM</a> and <a href="http://www.polymer-project.org/platform/html-imports.html">HTML imports</a>.
+</li>
+<li>
+How to define your own custom elements and install elements created by others using <a href="http://bower.io">Bower</a>
+</li>
+<li>
+Spend less time writing JavaScript and more time constructing pages
+</li>
+<li>
+Use modern front-end tooling (<a href="http://yeoman.io">Yeoman</a>) to scaffold an application using Polymer with <a href="github.com/yeoman/generator-polymer">generator-polymer</a>
+</li>
+<li>
+How Polymer super changes creating web components.
+</li>
+</ul>
+<p>For example, to install Polymer's Web Component polyfills and the library itself, you can run this one liner:
+</p>
+<p><pre>bower install --save Polymer/platform Polymer/polymer</pre>
+</p>
+<p>This adds a <code>bower_components</code> folder and adds the above packages. <code>--save</code> adds them to your app's bower.json file.
+</p>
+<p>Later, if you wanted to install Polymer's accordion element you could run:
+</p>
+<p><pre>bower install --save Polymer/polymer-ui-accordion</pre>
+</p>
+<p>and then import it into your application:
+</p>
+<p><pre>&lt;link rel="import" href="bower_components/polymer-ui-accordion/polymer-ui-accordion.html"&gt;</pre>
+</p>
+<p>To save time, scaffolding out a new Polymer app with all the dependencies you need, boilerplate code and tooling for optimizing your app can be done with Yeoman with this other one liner:
+</p>
+<p><pre>yo polymer</pre>
+</p>
+<h2>Bonus walkthrough</h2>
+<p>I also recorded a 30 minute bonus walkthrough of the Polymer Jukebox app I show in the talk.
+</p>
+<p><iframe width="640" height="360" src="//www.youtube.com/embed/Yd6Q4Wwvpd0" frameborder="0" allowfullscreen></iframe>
+</p>
+<p><strong>Covered in the bonus video:</strong>
+</p>
+<ul>
+<li>
+What the “everything is an element” mantra means
+</li>
+<li>
+How to use Bower to install Polymer’s Platform polyfills and elements
+</li>
+<li>
+Scaffolding our Jukebox app with the Yeoman generator and sub-generators
+</li>
+<li>
+Understanding the platform features scaffolded out via boilerplate
+</li>
+<li>
+How I functionally ported over an <a href="https://github.com/jgthms/juketube">Angular</a> app over to Polymer.
+</li>
+</ul>
+<p>We also make use of Yeoman sub-generators for scaffolding our new Polymer elements. e.g to create the boilerplate for an element <code>foo</code> we run:
+</p>
+<p><pre>yo polymer:element foo</pre>
+</p>
+<p>which will prompt us for whether we would like the element automatically imported, whether a constructor is required and for a few other preferences.
+</p>
+<p>The latest sources for the app shown in both talks are now up on <a href="https://github.com/addyosmani/yt-jukebox">GitHub</a>. I’ve refactored it a little further to be more organized and a little more easy to read.
+</p>
+<p>Preview of the app:
+</p>
+<script pagespeed_no_defer="">(function(){var d=window,e=document,f="documentElement",g="scrollTop",k="prototype",l="body",m="getAttribute",n="",p="1",q="data",r="img",s="load",t="number",u="on",v="onload",w="pagespeed_lazy_position",x="pagespeed_lazy_replaced_functions",y="pagespeed_lazy_src",z="position",A="relative",B="resize",C="scroll",D="src",E=function(a,b,c){if(a.addEventListener)a.addEventListener(b,c,!1);else if(a.attachEvent)a.attachEvent(u+b,c);else{var h=a[u+b];a[u+b]=function(){c.call(this);h&&h.call(this)}}};d.pagespeed=d.pagespeed||{};var F=d.pagespeed,G=function(a){this.d=[];this.a=0;this.b=!1;this.n=a;this.e=null;this.i=0;this.j=200;this.c=!1};G[k].r=function(){var a=0;typeof d.pageYOffset==t?a=d.pageYOffset:e[l]&&e[l][g]?a=e[l][g]:e[f]&&e[f][g]&&(a=e[f][g]);var b=d.innerHeight||e[f].clientHeight||e[l].clientHeight;return{top:a,bottom:a+b,height:b}};G[k].m=function(a){var b=a[m](w);if(b)return parseInt(b,0);var b=a.offsetTop,c=a.offsetParent;c&&(b+=this.m(c));b=Math.max(b,0);a.setAttribute(w,b);return b};
+G[k].q=function(a){var b=this.m(a);return{top:b,bottom:b+a.offsetHeight}};G[k].p=function(a,b){if(a.currentStyle)return a.currentStyle[b];if(e.defaultView&&e.defaultView.getComputedStyle){var c=e.defaultView.getComputedStyle(a,null);if(c)return c.getPropertyValue(b)}return a.style&&a.style[b]?a.style[b]:n};
+G[k].o=function(a){if(!this.c&&(0==a.offsetHeight||0==a.offsetWidth))return!1;if(this.p(a,z)==A)return!0;var b=this.r(),c=a.getBoundingClientRect();c?(a=c.top-b.height,b=c.bottom):(c=this.q(a),a=c.top-b.bottom,b=c.bottom-b.top);return a<=this.a&&0<=b+this.a};
+G[k].l=function(a){this.k(a);var b=this;d.setTimeout(function(){var c=a[m](y);if(null!=c)if((b.b||b.o(a))&&-1!=a.src.indexOf(b.n)){var h=a.parentNode,H=a.nextSibling;h&&h.removeChild(a);a.g&&(a.getAttribute=a.g);a.removeAttribute(v);a.removeAttribute(y);a.removeAttribute(x);h&&h.insertBefore(a,H);a.src=c}else b.d.push(a)},0)};G[k].loadIfVisible=G[k].l;G[k].t=function(){this.b=!0;this.f()};G[k].loadAllImages=G[k].t;G[k].f=function(){var a=this.d,b=a.length;this.d=[];for(var c=0;c<b;++c)this.l(a[c])};
+G[k].h=function(a,b){return a.a?null!=a.a(b):null!=a[m](b)};G[k].u=function(){for(var a=e.getElementsByTagName(r),b=0;b<a.length;++b){var c=a[b];this.h(c,y)&&this.k(c)}};G[k].overrideAttributeFunctions=G[k].u;G[k].k=function(a){var b=this;this.h(a,x)||(a.g=a[m],a.getAttribute=function(a){a.toLowerCase()==D&&b.h(this,y)&&(a=y);return this.g(a)},a.setAttribute(x,p))};
+F.s=function(a,b){var c=new G(b);F.lazyLoadImages=c;E(d,s,function(){c.c=!0;c.b=a;c.a=200;c.f()});0!=b.indexOf(q)&&((new Image).src=b);var h=function(){if(!(c.c&&a||c.e)){var b=c.j;(new Date).getTime()-c.i>c.j&&(b=0);c.e=d.setTimeout(function(){c.i=(new Date).getTime();c.f();c.e=null},b)}};E(d,C,h);E(d,B,h)};F.lazyLoadInit=F.s;})();
+
+pagespeed.lazyLoadInit(true, "//1-ps.googleusercontent.com/h/www.gstatic.com/psa/static/1.gif");
+</script><img pagespeed_lazy_src="http://i.imgur.com/RzEgWhd.png" width="90%" src="//1-ps.googleusercontent.com/h/www.gstatic.com/psa/static/1.gif" onload="pagespeed.lazyLoadImages.loadIfVisible(this);"/>
+<h2>Further reading</h2>
+<p>In summary, Polymer is a JavaScript library that enables Web Components now in modern web browsers as we wait for them to be implemented natively. Modern tooling can help improve your workflow using them and you might enjoy trying out Yeoman and Bower when developing your own tags.
+</p>
+<p>A few other articles that are worth checking out on the subject:
+</p>
+<ul>
+<li>
+<a href="http://www.html5rocks.com/en/tutorials/webcomponents/yeoman/">Building WebApps With Yeoman and Polymer</a>
+</li>
+<li>
+<a href="http://www.polymer-project.org/articles/concatenating-web-components.html">Concatenating Web Components With Vulcanize</a>
+</li>
+<li>
+<a href="http://updates.html5rocks.com/2014/01/Chrome-Dev-Summit-Polymer-declarative-encapsulated-reusable-components">Chrome Dev Summit: Polymer declarative, encapsulated, reusable components</a>
+</li>
+<li>
+<a href="http://updates.html5rocks.com/2013/11/The-Landscape-Of-Front-end-Development-Automation-Slides">The Landscape Of Development Automation</a>
+</li>
+<li>
+<a href="http://html5-demos.appspot.com/static/cds2013/index.html#26">Web Components: the future of web development</a>
+</li>
+<li>
+<a href="http://net.tutsplus.com/tutorials/javascript-ajax/building-apps-with-the-yeoman-workflow/">Building Apps With The Yeoman Workflow</a>
+</li>
+</ul>
+<p class="prevnext">
+<a id="prev" href="/2014/01/Web-apps-that-talk---Introduction-to-the-Speech-Synthesis-API">&#10218; Web apps that talk - Introduction to the Speech Synthesis API</a>
+</p>
+</section>
+<section class="postfooter">
+<h3 id="comments">Comments</h3>
+<div id="disqus_thread"></div>
+<script type="text/javascript" pagespeed_no_defer="">pagespeed.lazyLoadImages.overrideAttributeFunctions();</script><script type="text/javascript" src="http://disqus.com/forums/html5rocks/embed.js"></script>
+<noscript><a href="http://disqus.com/forums/html5rocks/?url=ref">View the discussion thread.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+</section>
+</section>
+</div>
+<div class="page" id="mobile"></div>
+<div class="page" id="gaming"></div>
+<div class="page" id="business"></div>
+<div class="page" id="learn"></div>
+<div class="page" id="features"></div>
+<div class="page" id="features-offline"></div>
+<div class="page" id="features-storage"></div>
+<div class="page" id="features-connectivity"></div>
+<div class="page" id="features-file_access"></div>
+<div class="page" id="features-semantics"></div>
+<div class="page" id="features-multimedia"></div>
+<div class="page" id="features-graphics"></div>
+<div class="page" id="features-presentation"></div>
+<div class="page" id="features-performance"></div>
+<div class="page" id="features-nuts_and_bolts"></div>
+<div class="page" id="why"></div>
+<div class="page" id="tutorials"></div>
+<div class="page" id="resources"></div>
+<div class="page" id="profiles"></div>
+<script type="text/javascript" src="http://1-ps.googleusercontent.com/x/s.updaterocker.appspot.com/updates.html5rocks.com/static/html5rocks/prettify/prettify.js.pagespeed.jm.bPrxxA86_S.js"></script>
+<script>(function(){$('#features_show a').click(function(){$('#search_hide').click();if($(this).hasClass('current')){$('.subheader.features').hide();$(this).removeClass('current');$('.watermark').css('top','30px');$('#features_show a').focus();}else{$('.main nav .current').removeClass('current');$(this).addClass('current');$('.subheader.features').show();$('.watermark').css('top','100px');$('#features').focus();}});$('#features_hide').click(function(){$('#features_show').removeClass('current');$('.subheader.features').hide();$('.watermark').css('top','30px');$('#features_show a').focus();});window.isCompatible=function(){return null;};if(isCompatible()===false){document.getElementById('notcompatible').className='';}else if(isCompatible()===true){document.getElementById('compatible').className='';}
+if(/^\?utm_/.test(document.location.search)&&window.history.replaceState){window.history.replaceState({},'',document.location.href.replace(/\?utm_.*/,''));}
+if($(window).width()<'1200'&&$(window).width()>'1000'&&$('.toc').length){var top=$('.toc').offset().top-50;$(window).scroll(function(event){var y=$(this).scrollTop();if(y>=top){$('.toc').addClass('fixed').removeClass('bottom');}else{$('.toc').removeClass('fixed').removeClass('bottom');}});}})();var pres=document.querySelectorAll('pre');for(var i=0,pre;pre=pres[i];++i){pre.className+=' prettyprint';};prettyPrint();</script>
+<script>(function(){var po=document.createElement('script');po.type='text/javascript';po.async=true;po.src='https://apis.google.com/js/plusone.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(po,s);})();</script>
+<script type="text/javascript">var _gaq=_gaq||[];_gaq.push(['_setAccount','UA-15028909-7']);_gaq.push(['_trackPageview']);(function(){var ga=document.createElement('script');ga.type='text/javascript';ga.async=true;ga.src=('https:'==document.location.protocol?'https://ssl':'http://www')+'.google-analytics.com/ga.js';var s=document.getElementsByTagName('script')[0];s.parentNode.insertBefore(ga,s);})();</script>
+<script defer src="http://www.html5rocks.com/static/js/search.js"></script>
+<noscript class="psa_add_styles"><link rel="stylesheet" media="all" href="http://www.html5rocks.com/static/css/base.css"><link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,400italic,600,800|Source+Code+Pro" rel="stylesheet"><link rel="stylesheet" media="only screen and (max-width: 800px)" href="http://www.html5rocks.com/static/css/mobile.css"><link rel="stylesheet" type="text/css" media="screen" href="http://1-ps.googleusercontent.com/x/s.updaterocker.appspot.com/updates.html5rocks.com/static/html5rocks/css/A.updates.css.pagespeed.cf.JuNJPUo6P1.css"/></noscript><script pagespeed_no_defer="">window['pagespeed'] = window['pagespeed'] || {};window['pagespeed']['stylesAdded'] = false;var addAllStyles = function() {  if (window['pagespeed']['stylesAdded']) return;  window['pagespeed']['stylesAdded'] = true;  var n = document.getElementsByTagName("noscript");  var r = [];  for (var i = 0; i < n.length; ++i) {    var e = n[i];    if (e.className == "psa_add_styles") {      r.push(e);    }  }  for (var i = 0; i < r.length; ++i) {    var e = r[i];    var div = document.createElement("div");    div.innerHTML = e.textContent;    document.body.appendChild(div);  }};if (window.addEventListener) {  document.addEventListener("DOMContentLoaded", addAllStyles, false);  window.addEventListener("load", addAllStyles, false);} else if (window.attachEvent) {  window.attachEvent("onload", addAllStyles);} else {  window.onload = addAllStyles;}</script><script pagespeed_no_defer="">(function(){var e=window,f=Math,g="round",h="performance",k="&rit_script=",r="&rit_link=",y="&rit_img=",z="&rit_css=",A="&nttfb=",B="&nfd=",C="&ndt=",D="&nct=",E="&nbt=",F="&mfd=",G="&attfb=",H="&afd=",I="&adt=",J="&act=",K="&abt=",L="";e.pagespeed=e.pagespeed||{};var M=e.pagespeed;
+M.getResourceTimingData=function(){if(e[h]&&(e[h].getEntries||e[h].webkitGetEntries)){for(var s=0,t=0,l=0,u=0,m=0,v=0,n=0,w=0,p=0,x=0,q=0,c={},d=e[h].getEntries?e[h].getEntries():e[h].webkitGetEntries(),b=0;b<d.length;b++){var a=d[b].duration;0<a&&(s+=a,++l,t=f.max(t,a));a=d[b].connectEnd-d[b].connectStart;0<a&&(v+=a,++n);a=d[b].domainLookupEnd-d[b].domainLookupStart;0<a&&(u+=a,++m);a=d[b].initiatorType;c[a]?++c[a]:c[a]=1;a=d[b].requestStart-d[b].fetchStart;0<a&&(x+=a,++q);a=d[b].responseStart-d[b].requestStart;
+0<a&&(w+=a,++p)}return H+(l?f[g](s/l):0)+B+l+F+f[g](t)+J+(n?f[g](v/n):0)+D+n+I+(m?f[g](u/m):0)+C+m+K+(q?f[g](x/q):0)+E+q+G+(p?f[g](w/p):0)+A+p+(c.css?z+c.css:L)+(c.link?r+c.link:L)+(c.script?k+c.script:L)+(c.img?y+c.img:L)}return L};M.getResourceTimingData=M.getResourceTimingData;})();
+(function(){var c=encodeURIComponent,f=window,h="performance",k="unload:",l="on",m="load:",n="load",p="ets=",q="beforeunload",r="EventStart",s="?",t="=",u="&url=",v="&ttfb=",w="&req_start=",x="&ref=",y="&r",z="&nt=",A="&nrp=",B="&nav=",C="&ifr=1",D="&ifr=0",E="&htmlAt=",F="&fp=",G="&dwld=",H="&dom_c=",I="&dns=",J="&connect=",K="&ccul=",L="&ccrl=",M="&ccos=",N="&ccis=",O="&cces=",P="&b_csi=",Q="&",R="";f.pagespeed=f.pagespeed||{};var S=f.pagespeed,T=function(a,d,b,e){this.d=a;this.a=d;this.b=b;this.e=e};S.beaconUrl=R;
+T.prototype.c=function(){var a=this.d,d=f.mod_pagespeed_start,b=Number(new Date)-d,a=a+(-1==a.indexOf(s)?s:Q),a=a+p+(this.a==n?m:k),a=a+b;if(this.a!=q||!f.mod_pagespeed_loaded){a+=y+this.a+t;if(f[h]){var b=f[h].timing,e=b.navigationStart,g=b.requestStart,a=a+(b[this.a+r]-e),a=a+(B+(b.fetchStart-e)),a=a+(I+(b.domainLookupEnd-b.domainLookupStart)),a=a+(J+(b.connectEnd-b.connectStart)),a=a+(w+(g-e)),a=a+(v+(b.responseStart-g)),a=a+(G+(b.responseEnd-b.responseStart)),a=a+(H+(b.domContentLoadedEventStart-
+e));f[h].navigation&&(a+=z+f[h].navigation.type);e=-1;b.msFirstPaint?e=b.msFirstPaint:f.chrome&&f.chrome.loadTimes&&(e=Math.floor(1E3*f.chrome.loadTimes().firstPaintTime));e-=g;0<=e&&(a+=F+e)}else a+=b;S.getResourceTimingData&&f.parent==f&&(a+=S.getResourceTimingData());a+=f.parent!=f?C:D;this.a==n&&(f.mod_pagespeed_loaded=!0,(b=f.mod_pagespeed_num_resources_prefetched)&&(a+=A+b),(b=f.mod_pagespeed_prefetch_start)&&(a+=E+(d-b)));S.panelLoader&&(d=S.panelLoader.getCsiTimingsString(),d!=R&&(a+=P+d));
+S.criticalCss&&(d=S.criticalCss,a+=N+d.total_critical_inlined_size+O+d.total_original_external_size+M+d.total_overhead_size+L+d.num_replaced_links+K+d.num_unreplaced_links);this.b!=R&&(a+=this.b);document.referrer&&(a+=x+c(document.referrer));a+=u+c(this.e);S.beaconUrl=a;(new Image).src=a}};S.f=function(a,d,b,e){var g=new T(a,d,b,e);f.addEventListener?f.addEventListener(d,function(){g.c()},!1):f.attachEvent(l+d,function(){g.c()})};S.addInstrumentationInit=S.f;})();
+
+pagespeed.addInstrumentationInit('http://1-ps.googleusercontent.com/beacon?org=112_1_vo', 'load', '&s_ttfb=40&id=1392404051887261', 'http://updates.html5rocks.com/2014/01/Yo-Polymer-A-Whirlwind-Tour-Of-Web-Component-Tooling');</script></body>
+</html>

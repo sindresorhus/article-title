@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en-US" prefix="og: http://ogp.me/ns#">
+<head>
+
+<meta charset="UTF-8" />
+
+<title>Web App with dream team; AngularJS, Cordova, Yeoman &amp; Topcoat | Numedia WebNumedia Web</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css" href="http://www.numediaweb.com/template/main.css" media="screen" />
+
+
+<!-- v1.4.24  -->
+<link rel="canonical" href="http://www.numediaweb.com/web-app-with-dream-team/" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Web App with dream team; AngularJS, Cordova, Yeoman &amp; Topcoat - Numedia Web" />
+<meta property="og:description" content="I spent some time goggling about the different workflows out there in the web applications development in general, and those ones that will be brought to native mobile apps (using the Cordova/Phonegap platform)  afterwards. The first complexity was to keep up with all the scattered approaches over there; not only every tutorial claims to win the &hellip;" />
+<meta property="og:url" content="http://www.numediaweb.com/web-app-with-dream-team/" />
+<meta property="og:site_name" content="Numedia Web" />
+<meta property="article:section" content="Technical" />
+<meta property="article:published_time" content="2013-12-13T16:22:24+00:00" />
+<meta property="article:modified_time" content="2013-12-19T16:57:13+00:00" />
+<meta property="og:image" content="http://www.numediaweb.com/file/2013/12/Yeoman-Heart-Cordova.png" />
+<meta property="og:image" content="http://www.numediaweb.com/file/2013/12/yeoman_angular_cordova.jpg" />
+
+
+<link rel='stylesheet' id='woo-layout-css'  href='http://www.numediaweb.com/template/css/layout.css' type='text/css' media='all' />
+<link rel='stylesheet' id='wp-syntax-css-css'  href='http://www.numediaweb.com/modules/82e601c6/css/wp-syntax.css' type='text/css' media='all' />
+<link rel='stylesheet' id='woodojo-social-widgets-css'  href='http://www.numediaweb.com/modules/78e41dc6/bundled/woodojo-social-widgets/assets/css/style.css' type='text/css' media='all' />
+<link rel='stylesheet' id='dashicons-css'  href='http://www.numediaweb.com/lib/css/dashicons.min.css' type='text/css' media='all' />
+<link rel='stylesheet' id='thickbox-css'  href='http://www.numediaweb.com/lib/js/thickbox/thickbox.css' type='text/css' media='all' />
+<script type='text/javascript' src='http://www.numediaweb.com/lib/js/comment-reply.min.js'></script>
+<script type='text/javascript' src='http://www.numediaweb.com/lib/js/jquery/jquery.js'></script>
+<script type='text/javascript' src='http://www.numediaweb.com/lib/js/jquery/jquery-migrate.min.js'></script>
+<script type='text/javascript' src='http://www.numediaweb.com/template/includes/js/third-party.js'></script>
+<script type='text/javascript' src='http://www.numediaweb.com/template/includes/js/general.js'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var woo_masonry_data = {"numberOfColumns":"3"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://www.numediaweb.com/template/includes/js/jquery.masonry.min.js'></script>
+<script type='text/javascript' src='http://www.numediaweb.com/template/includes/js/jquery.flexslider-min.js'></script>
+
+<!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame -->
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+<!--  Mobile viewport scale | Disable user zooming as the layout is optimised -->
+<meta content="initial-scale=1.0; maximum-scale=1.0; user-scalable=no" name="viewport"/>
+		<!--[if lt IE 9]>
+			<script src="https://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+		
+<!-- Alt Stylesheet -->
+<link href="http://www.numediaweb.com/template/styles/default.css" rel="stylesheet" type="text/css" />
+
+<!-- Custom Favicon -->
+<link rel="shortcut icon" href="http://www.numediaweb.com/file/2013/07/favicon1.ico"/>
+<!-- Options Panel Custom CSS -->
+<style type="text/css">
+.post .wp-caption p.wp-caption-text{
+text-align: left;
+color: #888;
+font-size: 0.9em;
+line-height: 2em;
+}
+code {
+font-family: Consolas, Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace, serif;
+background-color: #eeeeee;
+}
+</style>
+
+
+<!-- Woo Shortcodes CSS -->
+<link href="http://www.numediaweb.com/template/functions/css/shortcodes.css" rel="stylesheet" type="text/css" />
+
+<!-- Custom Stylesheet -->
+<link href="http://www.numediaweb.com/template/custom.css" rel="stylesheet" type="text/css" />
+
+<!-- Google Webfonts -->
+<link href="http://fonts.googleapis.com/css?family=Merriweather|Droid+Sans:r,b|Open+Sans:r,i,b,bi" rel="stylesheet" type="text/css" />
+
+<!-- Woo Custom Typography -->
+<style type="text/css">
+body { font:normal 1.2em/1.5em 'Open Sans', arial, sans-serif;color:#9E9E9E; }
+#navigation ul.nav > li a { font:300 1em/1.4em 'Merriweather', arial, sans-serif;color:#939393; }
+.home #navigation ul.nav > li a { font:300 1em/1.4em 'Merriweather', arial, sans-serif;color:#ffffff; }
+.type-page header h1 { font:300 1.7em/1.387em 'Open Sans', arial, sans-serif;color:#4A4A4A; }
+.post header h1, .post header h1 a:link, .post header h1 a:visited { font:bold 1.5em/1.387em 'Open Sans', arial, sans-serif;color:#4A4A4A; }
+.post-meta { font:300 1em/1em 'Open Sans', arial, sans-serif;color:#9E9E9E; }
+.entry, .entry p { font:normal 1.1em/1.5em 'Open Sans', arial, sans-serif;color:#0a0a0a; } h1, h2, h3, h4, h5, h6 { font-family: Open Sans, arial, sans-serif; }
+.widget h3 { font:300 1em/1em 'Open Sans', arial, sans-serif;color:#5596A5; }
+.widget h3 { font:300 1em/1.387em 'Open Sans', arial, sans-serif;color:#5596A5; }
+</style>
+
+</head>
+
+<body class="single single-post postid-756 single-format-standard chrome alt-style-default layout-full">
+
+
+    
+    
+    <div id="content-top">
+
+	
+	<header id="header">
+
+		<div class="col-full">
+			<div id="logo">
+
+												    <a href="http://www.numediaweb.com/" title="Freelance creative studio">
+				    	<img src="http://www.numediaweb.com/file/2013/10/numediaweb.com_logo_rounded1-150x150.png" alt="Numedia Web" />
+				    </a>
+			    			    
+			    <hgroup>
+			        
+					<h1 class="site-title"><a href="http://www.numediaweb.com/">Numedia Web</a></h1>
+					<h2 class="site-description">Freelance creative studio</h2>
+
+				</hgroup>
+
+			</div><!-- /#logo -->
+	        
+	        <h3 class="nav-toggle"><a href="#navigation">&#9776; <span>Navigation</span></a></h3>
+
+	        
+			
+			<nav id="navigation" role="navigation">
+				
+				<ul id="main-nav" class="nav fl"><li id="menu-item-9" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-9"><a href="http://www.numediaweb.com/">Home</a></li>
+<li id="menu-item-492" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-492"><a href="http://www.numediaweb.com/portfolio/">Portfolio</a></li>
+<li id="menu-item-498" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-498"><a href="http://www.numediaweb.com/about-us/">About me</a></li>
+<li id="menu-item-832" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-832"><a href="http://www.numediaweb.com/category/technical/">Blog</a></li>
+<li id="menu-item-598" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-598"><a href="http://www.numediaweb.com/contact-us/">Contact us</a></li>
+</ul>		
+			</nav><!-- /#navigation -->
+			
+			
+		</div><!-- /.col-full -->
+	
+	</header><!-- /#header -->
+
+	
+	</div><!-- /#content-top -->
+
+	<div id="wrapper">
+		
+	       
+    <div id="content" class="col-full">
+    
+    	<section id="breadcrumbs"><div class="breadcrumb breadcrumbs woo-breadcrumbs"><div class="breadcrumb-trail"><span class="trail-before"><span class="breadcrumb-title">You are here:</span></span> <a href="http://www.numediaweb.com" title="Numedia Web" rel="home" class="trail-begin">Home</a> <span class="sep">&gt;</span> <span class="trail-end">Web App with dream team; AngularJS, Cordova, Yeoman &#038; Topcoat</span></div></div></section><!--/#breadcrumbs-->    	
+		<section id="main" class="col-left">
+		           
+        			<article class="post-756 post type-post status-publish format-standard hentry category-technical">
+
+				                
+                <div class="article-inner">
+
+	                <header>
+	                
+		                <h1>Web App with dream team; AngularJS, Cordova, Yeoman &#038; Topcoat</h1>
+		                
+	                	<aside class="post-meta">
+
+	<span class="post-avatar">
+		<img alt='' src='http://1.gravatar.com/avatar/9b45bb0b208ece14ef907c3709cc93ad?s=50&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D50&amp;r=G' class='avatar avatar-50 photo' height='50' width='50' />	</span><!-- .post-avatar -->
+
+		<span class="post-comments">
+		<a href="http://www.numediaweb.com/web-app-with-dream-team/#comments" title="Comment on Web App with dream team; AngularJS, Cordova, Yeoman &amp; Topcoat">1</a>	</span><!-- .post-comments -->
+	
+	<span class="post-date">
+		13 December	</span><!-- .post-date -->
+
+</aside>
+<p class="post-category">Categories:  <a href="http://www.numediaweb.com/category/technical/" title="View all posts in Technical" rel="category tag">Technical</a></p>
+	                	
+	                </header>
+
+	                <section class="entry fix">
+	                	<p>I spent some time goggling about the different workflows out there in the web applications development in general, and those ones that will be brought to native mobile apps (using the Cordova/Phonegap platform)  afterwards. The first complexity was to keep up with all the scattered approaches over there; not only every tutorial claims to win the best workflow/ best practise trophy but also the tutorials get outdated so fast after they are released (a time span of 5 months old tutorial is considered.. old!).</p>
+<p>Maybe the most terrific answer about this issues is found <a href="http://stackoverflow.com/questions/14994391/how-do-i-think-in-angularjs-if-i-have-a-jquery-background/15012542#15012542" target="_blank">here</a>!</p>
+<h2>First approach; Cordova + Web Best Practices</h2>
+<p>More searching lead me to this <a href="http://www.gauntface.co.uk/blog/2013/07/18/cordova-web-best-practices/">gauntface.co.uk</a>, the author (Matt Gaunt; <em>a Developer Advocate for Chrome @ Google</em>) suggested this workflow;</p>
+<div id="attachment_757" style="width: 632px" class="wp-caption aligncenter"><img class="size-full wp-image-757 " alt="Yeoman-Heart-Cordova" src="http://www.numediaweb.com/file/2013/12/Yeoman-Heart-Cordova.png" width="622" height="373" /><p class="wp-caption-text"><br />Copyright; gauntface.co.uk</p></div>
+<ul>
+<li>Make sure <a href="rubyinstaller.org/downloads/" target="_blank">Ruby</a> (<code>gem -v</code>) and <a href="http://compass-style.org/" target="_blank">Compass</a> (<code>gem install compass</code>) are installed.</li>
+<li>Create cordova project, add a platform to it</li>
+<li>Inside the created cordova project, create a new dir called &#8220;yeoman&#8221; and <code>yo webapp.</code></li>
+<li>Copy the  <em>config.xml</em> file from the <em>www</em> directory over to <em>yeoman/app</em>.</li>
+<li>In the Gruntfile.js, edit the line near <code>yeoman:..</code>  (in the tutorial it says; <em>yeomanConfig </em>but this is outdated too!) Change the <em>dist </em>location  to <code>dist: '../www'</code></li>
+<li>Add to the clean task so it can clean directories outside of it’s current directory; <code>  options: {</code><code>    force: true</code><code>  },</code> Then the config.xml file is copied over to the <em>www</em> directory by appending <code>xml</code> to {<code>ico,png,txt,<strong>xml</strong></code>}.</li>
+</ul>
+<p>Now whenever you run <code>grunt build</code>, it’ll go through the build steps and load the appropriate files into the <em>www</em> directory.</p>
+<h2>Second approach; PhoneGap+AngularJS</h2>
+<p>Holly Schinsky ( <em>Developer Evangelist at Adobe</em>) wrote a nice starter app and tutorial <a href="http://devgirl.org/2013/06/10/quick-start-guide-phonegap-and-angularjs/">devgirl.org</a>. She wrote the article on June 2013 but it got outdated by October! This is a fast evolving era especially with the V8 JavaScript platform Google had introduced. The community gets bigger and so the tools get changed very often;</p>
+<ul>
+<li>ngMobile has ben renamed to ngTouch.</li>
+<li>newer version of cordova.</li>
+<li>&#8230;</li>
+</ul>
+<p>I loved the <a href="http://topcoat.io/">Topcoat UI Toolkit</a> and will definitly use it for one app i&#8217;m working on. The author confirms; This project was written a few months ago so you can refer to a newer version of Cordova… I will get around to updating this as soon as I can with a 3.0 or greater version to make sure it all works.</p>
+<h2>Third approach; Yeoman, AngularJS &amp; Cordova</h2>
+<p>Nick Stuart (Senior Software Developer @ Portland Webworks) wrote an intresting workflow at his blog post <a href="http://www.portlandwebworks.com/blog/combining-yeoman-angularjs-and-cordova-mobile-development">portlandwebworks.com</a>.</p>
+<div id="attachment_769" style="width: 610px" class="wp-caption aligncenter"><img class="size-full wp-image-769 " alt="Copyright; portlandwebworks.com" src="http://www.numediaweb.com/file/2013/12/yeoman_angular_cordova.jpg" width="600" height="350" /><p class="wp-caption-text"><br />Copyright; portlandwebworks.com</p></div>
+<ul>
+<li>Create a directory where to put the Yeoman stuff; <code>md ang-droid\ang-droid-frontend</code></li>
+<li>Install Angular <code>yo angular </code>then  <code>bower install --dev </code>actually <em>yo</em> does that for you. Then <code>grunt</code>to check if verything is ok.</li>
+<li><code>cd..</code>back to parent dir and <code>cordova create ang-droid </code>Once finished, we should have the following directory layout for everything:
+<ul>
+<li>+&#8211; ang-droid</li>
+<li>        +&#8211; ang-droid <em>//home of our Cordova android app </em></li>
+<li>        +&#8211; ang-droid-frontend <em>//home for all our html assets</em></li>
+</ul>
+</li>
+<li>The following instructions are missing some steps (this &#8220;edgy&#8221; tools change a lot, remember?), to fix this<br />
+<code>cd ang-droid</code>  Then create a target platform <code>cordova platforms add android</code> then  <code>cordova build android</code>.</li>
+<li>Copy the cordova script; <code>copy "platforms\android\assets\www\cordova.js" "..\ang-droid-frontend\app\scripts"</code></li>
+<li>Include <code>&lt;script src="scripts/cordova.js"&gt;&lt;/script&gt;</code> inside &#8220;<em>ang-droid-frontend/app/index.html&#8221;</em> to be loaded up before the angular scripts.</li>
+<li>Add a jshint directive in <em>Gruntfile.js</em> to ignore all  <code>'!&lt;%= yeoman.app %&gt;/scripts/cordova.js'</code> errors .</li>
+<li>Remove the existing Cordova template files (had to correct paths); <code>rd /S "www"</code></li>
+<li>The next step is to configure cordova to get the source from our front end app directory by editing  ant.properties. But this is outdated; the  ant.properties doesn&#8217;t exist in newer cordova! So i&#8217;ll skip this step and use the methode from above (Change the <em>dist </em>location in Gruntfile.js).</li>
+<li>Same thing like above for the clean task and the config.xml file.</li>
+<li>This should be all the setup that is required for the android side of things. The other tutorial talks about starting services yo angular:service CordovaReady but I&#8217;m done with it, I&#8217;ll run <code>grunt build</code> then  <code>cordova run android</code> instead.. Basta!</li>
+</ul>
+<h2>My workflow!</h2>
+<p>After testing the different workflows, I can now filter the best parts of each one and address a refined/better one (so far) according to my likeliness. A solid upgradable workflow; that&#8217;s what I&#8217;m aiming at.</p>
+<p>Before digging inside the workflow, I would like to mention why I have chosen each of the technologies on the workflow.</p>
+<p><strong>Cordova</strong></p>
+<p>Apache Cordova is a platform for building native mobile applications using HTML, CSS and JavaScript. I used to build a native app using the Java/Android SDK/Eclipse, but I wanted to play a bit with hybrid apps and benefit from the ability to port my apps to wider mobile platforms.</p>
+<p><strong>AngularJS vs jQuery Mobile</strong></p>
+<p>I preferred the use of AngularJS (by Google) for many reasons; First I already know and code using the jQuery framework, and I want to learn something new, AngularJS was the perfect candidate. After reading some reviews about it compared to jQM I found many posts <a title="Who Is Murdering PhoneGap? It's jQuery Mobile" href="http://apachecordova.blogspot.de/2012/11/who-is-murdering-phonegap-its-jquery.html" target="_blank">complaining </a>about the later. What really got my attention was <a title="AngularJS Hello World" href="http://www.youtube.com/watch?v=uFTFsKmkQnQ" target="_blank">this short</a> video on AngularJS website, with few lines of code you can do a lot!</p>
+<p><strong>Yeoman, Grunt &amp; Bower</strong></p>
+<p>I think the yeoman.com introduction says it all; <em>Yeoman 1.0 is more than just a tool. It&#8217;s a workflow; a collection of tools and best practices working in harmony to make developing for the web even better</em>.</p>
+<ul>
+<li><a href="https://github.com/yeoman/yo">Yo</a> scaffolds out a new application, writing your Grunt configuration and pulling in relevant Grunt tasks that you might need for your build.</li>
+<li><a href="http://gruntjs.com/">Grunt</a> is used to build, preview and test your project, thanks to help from tasks curated by the Yeoman team and grunt-contrib.</li>
+<li><a href="http://bower.io/">Bower</a> is used for dependency management, so that you no longer have to manually download and manage your scripts.</li>
+</ul>
+<p><strong>Ok! Here we go.. The workflow</strong></p>
+<ol>
+<li>After setting up <a href="http://www.numediaweb.com/node-js-cordova-genymotion-emulator/">all the necessary tools </a>and insure that everything (Android SDK, Node.js, Paths..) works, I lunch the nod.js command prompt that I configured to use my default app folder.</li>
+<li>Setup Cordova;
+<ol>
+<li>New Crordova project; <code>cordova create mp com.numediaweb.mp "MarchesPublics"</code></li>
+<li><code>cd mp</code></li>
+<li>Add a new platform; <code>cordova platforms add android</code></li>
+</ol>
+</li>
+<li>Generate Yeoman code;
+<ol>
+<li>Sub-folder for Yeoman; <code>md yo</code></li>
+<li><code>cd yo</code></li>
+<li>Generate AngularJS code; <code>yo angular</code></li>
+</ol>
+</li>
+<li>Further setup;
+<ol>
+<li>Copy config.xml; <code>copy "..\www\config.xml" "app"</code></li>
+<li>Edit Gruntfile.js; Add <code>xml</code> in the copy&gt;dist&gt;files&gt;src directive. Set the distribution to the parent www folder and declare in the clean directive options <code>force: true</code> (check above for details)</li>
+<li>You may check this article for <a href="http://briantford.com/blog/huuuuuge-angular-apps.html" target="_blank">best practices</a>..</li>
+</ol>
+</li>
+<li>Setup cordova dependencies;
+<ol>
+<li>Copy cordova.js; <code>copy "..\platforms\android\assets\www\cordova.js" "app\scripts\"</code></li>
+<li>Include inside app/index.html before angular; <code>&lt;script type="text/javascript" src="scripts/cordova.js"&gt;&lt;/script&gt;</code> but comment it out when testing in the browser!</li>
+</ol>
+</li>
+<li>Finish;
+<ol>
+<li>Check project for errors and build; <code>grunt build</code></li>
+<li>To run the test in a browser, I could use <code>cordova serve android</code> which generates a local server <a href="http://127.0.0.1:8000/#/">http://127.0.0.1:8000/#/</a> so I can see the app. But the problem with this approach is the need to build the project each time before previewing the edits; Cordova serves the www folder inside the choosen platform, which not where I&#8217;m currently working.. So I&#8217;ll use the Grunt way; <code>grunt serve</code> which allows runtime changes view.<br />
+Optionally, Ican use a Chrome extension named  <a href="https://chrome.google.com/webstore/detail/ripple-emulator-beta/geelfhphabnejjhdalkjhgipohgpdnoc?hl=en">Ripple Emulator (Beta)</a> which is a browser based html5 mobile application development and testing tool.</li>
+</ol>
+</li>
+</ol>
+											</section>
+										
+						            
+				</div><!-- /.article-inner -->
+
+
+		        <nav id="post-entries" class="fix">
+		            <div class="nav-prev fl"><a href="http://www.numediaweb.com/node-js-cordova-genymotion-emulator/" rel="prev"><span class="meta-nav">&larr;</span> Node.js, Cordova and Genymotion emulator&#8230; Aghhh!</a></div>
+		            <div class="post-share-bar">
+					<ul>
+						<li class="share_title">Share this Post: </li>
+<li class="twitter"><a target="_blank" title="Share on Twitter" href="https://twitter.com/intent/tweet?original_referer=http%3A%2F%2Fwww.numediaweb.com%2Fwordpress&#038;text=Web+App+with+dream+team%3B+AngularJS%2C+Cordova%2C+Yeoman+%26+Topcoat&#038;url=http%3A%2F%2Fwww.numediaweb.com%2Fweb-app-with-dream-team%2F">Twitter</a></li>
+<li class="facebook"><a target="_blank" title="Share on Facebook" href="http://www.facebook.com/share.php?u=http%3A%2F%2Fwww.numediaweb.com%2Fweb-app-with-dream-team%2F">Facebook</a></li>
+<li class="technorati"><a target="_blank" title="Share on Technorati" href="http://technorati.com/faves?sub=addfavbtn&#038;add=http%3A%2F%2Fwww.numediaweb.com%2Fweb-app-with-dream-team%2F">Technorati</a></li>
+<li class="reddit"><a target="_blank" title="Share on Reddit" href="http://www.reddit.com/submit?url=http%3A%2F%2Fwww.numediaweb.com%2Fweb-app-with-dream-team%2F&#038;title=Web+App+with+dream+team%3B+AngularJS%2C+Cordova%2C+Yeoman+%26+Topcoat">Reddit</a></li>
+<li class="delicious"><a target="_blank" title="Share on Delicious" href="http://delicious.com/post?url=http%3A%2F%2Fwww.numediaweb.com%2Fweb-app-with-dream-team%2F">Delicious</a></li>
+<li class="pinterest"><a target="_blank" title="Share on Pinterest" href="http://pinterest.com/pin/create/button/?url=http%3A%2F%2Fwww.numediaweb.com%2Fweb-app-with-dream-team%2F&#038;media=http%3A%2F%2Fwww.numediaweb.com%2Fwordpress%2Fwp-content%2Fuploads%2F2013%2F12%2Fyeoman_angular_cordova.jpg&#038;description=I+spent+some+time+goggling+about+the+different+workflows+out+there+in+the+web+applications+development+in+general%2C+and+those+ones+that+will+be+brought+to+native+mobile+apps+%28using+the+Cordova%2FPhonegap+platform%29%C2%A0%C2%A0afterwards.+The+first+complexity+was+to+keep+up+with+all+the+scattered+approaches+over+there%3B+not+only+every+tutorial+claims+to+win+the+%5B%26hellip%3B%5D">Pinterest</a></li>
+</ul>
+				</div>		            <div class="nav-next fr"><a href="http://www.numediaweb.com/cordova-icons-splash-screens/" rel="next">Cordova Icons and Splash Screens <span class="meta-nav">&rarr;</span></a></div>
+		        </nav><!-- #post-entries -->
+
+								<aside id="post-author" class="fix">
+					<div class="profile-content">
+						<h3 class="title"><span>Author:</span>About Abdessamad Idrissi</h3>
+						<p>I'm a web developer from Morocco. Besides other things that I love (soccer, swimming, movies..), Webdesign and programming are  things I like to do on a freelance basis. I fell in love with making things work and the world of coding. I'm all about pushing boundaries &amp; creating exciting new functionality. When in doubt, remember; "there's a plugin for that".</p>
+						<div class="author-links">
+														<a href="http://www.numediaweb.com/" class="website">
+								View Website							</a>
+														<a href="http://www.numediaweb.com/profile/admin/" class="profile">
+								View other posts							</a>
+						</div><!-- #author-link -->
+					</div><!-- .post-entries -->
+				</aside><!-- .post-author-box -->
+				
+					
+            </article><!-- .post -->
+
+            
+    
+
+<!-- You can start editing here. -->
+
+
+<div id="comments">
+
+			<h3>One Response to &#8220;Web App with dream team; AngularJS, Cordova, Yeoman &#038; Topcoat&#8221;</h3>
+
+		<ol class="commentlist">
+	
+				                 
+		<li class="comment even thread-even depth-1">
+	    
+	    	<a name="comment-27"></a>
+	      	
+	      	<div id="li-comment-27" class="comment-container">
+	      	
+					                <div class="avatar"><img alt='' src='http://0.gravatar.com/avatar/e2df0f310cda85f41622721b61d6ee8e?s=160&amp;d=http%3A%2F%2F0.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D160&amp;r=G' class='photo avatar avatar-160 photo' height='160' width='160' /></div>
+	            		      
+		   		<div class="comment-entry" id="comment-27">
+	
+		      	<div class="comment-head">
+		      	            
+	                <span class="name">Antonio</span>           
+	                <span class="date">January 17, 2014 at 11:43 am</span>
+	                <span class="perma"><a href="http://www.numediaweb.com/web-app-with-dream-team/#comment-27" title="Direct link to this comment">#</a></span>
+	                <span class="edit"></span>
+		        		          	
+				</div><!-- /.comment-head -->
+
+				<p>I stumbled upon this post after having spent quite some time with every one of the approaches you mention in the start of the article.<br />
+Yours is the only one that actually got me to a runnable example. Thank you sir!</p>
+   
+										
+	                <div class="reply">
+	                    <a class='comment-reply-link' href='/web-app-with-dream-team/?replytocom=27#respond' onclick='return addComment.moveForm("comment-27", "27", "respond", "756")'>Reply</a>	                </div><!-- /.reply -->                       
+			
+				</div><!-- /comment-entry -->
+	
+			</div><!-- /.comment-container -->
+			
+	</li><!-- #comment-## -->
+		
+		</ol>    
+
+		<nav class="navigation fix">
+			<div class="fl"></div>
+			<div class="fr"></div>
+		</nav><!-- /.navigation -->
+			    
+	    	
+</div> <!-- /#comments_wrap -->
+
+								<div id="respond" class="comment-respond">
+				<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="/web-app-with-dream-team/#respond" style="display:none;">Click here to cancel reply.</a></small></h3>
+									<form action="http://www.numediaweb.com/user_submit.php" method="post" id="commentform" class="comment-form">
+																										<p class="comment-form-author"><input id="author" class="txt" name="author" type="text" value="" size="30" aria-required='true' /><label for="author">Name <span class="required">(Required)</span></label> </p>
+<p class="comment-form-email"><input id="email" class="txt" name="email" type="text" value="" size="30" aria-required='true' /><label for="email">Email <span class="required">(Required)</span></label> </p>
+<p class="comment-form-url"><input id="url" class="txt" name="url" type="text" value="" size="30" /><label for="url">Website</label></p>
+												<p class="comment-form-comment"><label for="comment">Comment</label> <textarea id="comment" name="comment" cols="45" rows="8" aria-required="true"></textarea></p>												<p class="form-submit">
+							<input name="submit" type="submit" id="submit" value="Submit Comment" />
+							<input type='hidden' name='comment_post_ID' value='756' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+						</p>
+						<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="6430331e37" /></p>					</form>
+							</div><!-- #respond -->
+			  
+        
+		</section><!-- #main -->
+		
+		
+        
+    </div><!-- #content -->
+
+    
+	<div id="single-widget-fullwidth" class="col-full">
+		<div id="woo_relatedposts-2" class="widget widget_woo_relatedposts widget_woo_newsfromblog">		<div class="section-blog flexslider">
+			<input type="hidden" class="autoslide" value="0"/>
+			<h3><span>Related Posts</span></h3>			<ul class="slides">
+
+				<li class="slide">
+
+										
+	<article class="post-818 post type-post status-publish format-standard hentry category-technical">
+	
+	    
+	    <div class="article-inner">
+	    
+			<header>
+				<h1><a href="http://www.numediaweb.com/cordova-icons-splash-screens/" rel="bookmark" title="Cordova Icons and Splash Screens">Cordova Icons and Splash Screens</a></h1>
+				<aside class="post-meta">
+
+	<span class="post-avatar">
+		<img alt='' src='http://1.gravatar.com/avatar/9b45bb0b208ece14ef907c3709cc93ad?s=50&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D50&amp;r=G' class='avatar avatar-50 photo' height='50' width='50' />	</span><!-- .post-avatar -->
+
+		<span class="post-comments">
+			</span><!-- .post-comments -->
+	
+	<span class="post-date">
+		24 December	</span><!-- .post-date -->
+
+</aside>
+<p class="post-category">Categories:  <a href="http://www.numediaweb.com/category/technical/" title="View all posts in Technical" rel="category tag">Technical</a></p>
+			</header>
+
+			<section class="entry">
+				<p>The Cordova docs, regarding the use of icons and splash screens for Android, states that they should be placed in www/res/icons and www/res/screens directories respectively.. ...</p>			</section>
+
+			<footer class="post-more">      
+							
+								<span class="read-more"><a href="http://www.numediaweb.com/cordova-icons-splash-screens/" title="Continue Reading &rarr;">Continue Reading &rarr;</a></span>
+						</footer>
+
+		</div><!-- /.article-inner -->
+
+	</article><!-- /.post -->																
+	<article class="post-735 post type-post status-publish format-standard hentry category-technical">
+	
+	    
+	    <div class="article-inner">
+	    
+			<header>
+				<h1><a href="http://www.numediaweb.com/node-js-cordova-genymotion-emulator/" rel="bookmark" title="Node.js, Cordova and Genymotion emulator&#8230; Aghhh!">Node.js, Cordova and Genymotion emulator&#8230; Aghhh!</a></h1>
+				<aside class="post-meta">
+
+	<span class="post-avatar">
+		<img alt='' src='http://1.gravatar.com/avatar/9b45bb0b208ece14ef907c3709cc93ad?s=50&amp;d=http%3A%2F%2F1.gravatar.com%2Favatar%2Fad516503a11cd5ca435acc9bb6523536%3Fs%3D50&amp;r=G' class='avatar avatar-50 photo' height='50' width='50' />	</span><!-- .post-avatar -->
+
+		<span class="post-comments">
+			</span><!-- .post-comments -->
+	
+	<span class="post-date">
+		12 December	</span><!-- .post-date -->
+
+</aside>
+<p class="post-category">Categories:  <a href="http://www.numediaweb.com/category/technical/" title="View all posts in Technical" rel="category tag">Technical</a></p>
+			</header>
+
+			<section class="entry">
+				<p>While developing my first Hybrid app using Phonegap/Cordova for the Android system I had to find a flawless workflow that both ...</p>			</section>
+
+			<footer class="post-more">      
+							
+								<span class="read-more"><a href="http://www.numediaweb.com/node-js-cordova-genymotion-emulator/" title="Continue Reading &rarr;">Continue Reading &rarr;</a></span>
+						</footer>
+
+		</div><!-- /.article-inner -->
+
+	</article><!-- /.post -->										
+				</li>
+
+			</ul>
+		</div>
+		<div class="flexslider-nav-container"></div>	
+</div>	</div>
+
+		
+		
+
+	
+			
+	<div id="footer-widgets-container">	
+		<section id="footer-widgets" class="col-full col-4 fix">
+
+							
+			<div class="block footer-widget-1">
+	        	<div id="text-2" class="widget widget_text"><h3>Cotact</h3>			<div class="textwidget">Tell us about your project and we will come to help:</br></br>
+<b>Germany</b>
++49 179 40 45 44 8</br></br>
+<b>Morocco</b>
++212 624 210 973</br></br>
+<b>Email</b>
+<img src="http://www.numediaweb.com/file/2013/10/email_widget_16.png">
+</div>
+		</div>			</div>
+
+		        							
+			<div class="block footer-widget-2">
+	        	<div id="woodojo_twitterprofile-2" class="widget widget_woodojo_twitterprofile"><h3>Twitter Profile</h3><img src="http://pbs.twimg.com/profile_images/378800000198777650/094c9a174813a2861a4be201d3c525a9_normal.png" alt="numedia_web" title="numedia_web" class="avatar alignleft" />
+<p class="profile-info">
+<span class="description">Numedia Web is a creative agency specialized on web development, graphic design and video.</span>
+</p>
+<p class="follow-link"><a href="http://twitter.com/numedia_web">Follow numedia_web on Twitter</a></p>
+</div>			</div>
+
+		        							
+			<div class="block footer-widget-3">
+	        	<div id="woodojo_instagram-2" class="widget widget_woodojo_instagram"><h3>Instagram</h3></div>			</div>
+
+		        							
+			<div class="block footer-widget-4">
+	        				<div id="woo_subscribe-2" class="widget widget_woo_subscribe">					<aside id="connect" class="fix">
+		<h3>Subscribe</h3>
+
+		<div >
+			<p>Follow us on different social networks!</p>
+			
+			
+						<div class="social">
+		   				   		<a href="http://www.numediaweb.com/?feed=rss2" class="subscribe" title="RSS"></a>
+
+		   				   		<a href="http://www.twitter.com/numedia_web" class="twitter" title="Twitter"></a>
+
+		   				   		<a href="https://www.facebook.com/numediawebdotcom" class="facebook" title="Facebook"></a>
+
+		   				   		<a href="http://www.youtube.com/numediastudio" class="youtube" title="YouTube"></a>
+
+		   				   		<a href="http://www.flickr.com/photos/22953248@N03/" class="flickr" title="Flickr"></a>
+
+		   				   		<a href="http://www.linkedin.com/profile/view?id=136244860" class="linkedin" title="LinkedIn"></a>
+
+		   				   		<a href="https://delicious.com/numediaweb" class="delicious" title="Delicious"></a>
+
+		   				   		<a href="https://plus.google.com/105320308722754266846" class="googleplus" title="Google+"></a>
+
+							</div>
+			
+		</div><!-- col-left -->
+
+		
+	</aside>
+				</div>					</div>
+
+		        			
+		</section><!-- /#footer-widgets  -->
+	</div>
+
+<footer id="footer">
+
+	<div class="col-full">
+
+		<div id="copyright" class="col-left">
+					<p>Numedia Web &copy; 2014. All Rights Reserved.</p>
+				</div>
+
+		<div id="credit" class="col-right">
+	    Powered by <a href="http://www.wordpress.org">WordPress</a>. 		</div>
+
+	</div>
+
+</footer><!-- /#footer  -->
+
+</div><!-- /#wrapper -->
+
+
+<!--[if lt IE 9]>
+<script src="http://www.numediaweb.com/template/includes/js/respond-IE.js"></script>
+<![endif]-->
+<script type='text/javascript' src='http://www.numediaweb.com/template/includes/js/post-type-slider.js'></script>
+<script type='text/javascript' src='http://www.numediaweb.com/template/includes/js/news-from-blog.js'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var thickboxL10n = {"next":"Next >","prev":"< Prev","image":"Image","of":"of","close":"Close","noiframes":"This feature requires inline frames. You have iframes disabled or your browser does not support them.","loadingAnimation":"http:\/\/www.numediaweb.com\/lib\/js\/thickbox\/loadingAnimation.gif"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='http://www.numediaweb.com/lib/js/thickbox/thickbox.js'></script>
+</body>
+</html>
+<!-- Performance optimized by W3 Total Cache. Learn more: http://www.w3-edge.com/wordpress-plugins/
+
+Page Caching using disk: enhanced
+Database Caching 3/62 queries in 0.048 seconds using disk
+
+ Served from: www.numediaweb.com @ 2014-02-13 19:06:40 by W3 Total Cache -->

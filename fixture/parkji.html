@@ -1,0 +1,226 @@
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Using Yeoman to scaffold out new websites&mdash;blog.ParkJi.co.uk</title>
+        <link href='http://fonts.googleapis.com/css?family=Fenix' rel='stylesheet'>
+
+        
+            <link rel="stylesheet" href="http://assets.parkji.co.uk/css/styles.min.css">
+        
+        
+            <!--[if lt IE 9]>
+                <script src="http://assets.parkji.co.uk/js/polyfills.js"></script>
+            <![endif]-->
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script type="text/javascript">
+
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', 'UA-25124123-1']);
+          _gaq.push(['_trackPageview']);
+
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+
+        </script>
+    </head>
+    <body>
+        <div class="wrapper">
+            <header class="site-header">
+                <a href="/" class="brand site-logo">
+                    Blog.ParkJi.co.uk
+                </a>
+            </header>
+            <nav>
+                <ul class="nav site-nav">
+                    <li>
+                        <a href="http://parkji.co.uk/">Home</a>
+                    </li>
+                    <li>
+                        <a href="/" class="active">Blog</a>
+                    </li>
+                    <li>
+                        <a href="http://parkji.co.uk/#work">Work</a>
+                    </li>
+                    <li>
+                        <a href="http://parkji.co.uk/about">About</a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="content separated grid">
+            <article class="grid--item three-quarters mobile-one-whole">
+                <h1>Using Yeoman to scaffold out new websites</h1>
+
+<p>Recently I&#39;ve been playing around with <a href="http://yeoman.io/">Yeoman</a>, a web scaffolding tool. If you&#39;ve never heard of it before, or are unfamiliar with it, stop right now <abbr title="and">&amp;</abbr> go check it out!</p>
+
+<p>From first impressions Yeoman seemed geared towards scaffolding JavaScript based single page applications, however the <em>basic</em> functionality of a <a href="http://yeoman.io/generators.html">generator</a> is to copy files, make directories etc., so I decided to make one I could use when starting a new project.</p>
+
+<p>I followed the <a href="http://yeoman.io/generators.html#writing-your-first-generator">documentation</a> to generate my generator, giving it the name <code>parkji-vanilla</code> (the <code>generator-</code> is automatically added by <code>generator-generator</code>).</p>
+
+<p>One of the great things about yeoman generators is that they can run <code>bower install</code> <abbr title="and">&amp;</abbr> <code>npm install</code> after they&#39;ve finished scaffolding, thereby saving you the effort (granted, this is minimal effort).</p>
+
+<h2>Prompts</h2>
+
+<p>I wanted my generator to ask for two things when it ran:</p>
+
+<ol>
+<li>The name of the website</li>
+<li>The type of website (static, Perch etc.)</li>
+</ol>
+
+<p>Asking for the name was really easy, I just added the following object to the <code>prompts</code> array:</p>
+<div class="highlight"><pre><code class="javascript language-javascript" data-lang="javascript"><span class="p">{</span>
+  <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;siteName&#39;</span><span class="p">,</span>
+  <span class="nx">message</span><span class="o">:</span> <span class="s1">&#39;What is the name of this website?&#39;</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Prompting for the type required a bit of digging around because I wanted to list out the different types <abbr title="and">&amp;</abbr> then choose from these, rather than have to type it in <abbr title="and">&amp;</abbr> validate it.</p>
+
+<p>Yeoman uses <a href="https://github.com/SBoudrias/Inquirer.js">Inquirer.js</a> for prompts so I took a look at the docs <abbr title="and">&amp;</abbr> realised that I needed to use the <code>list</code> type, like so:</p>
+<div class="highlight"><pre><code class="javascript language-javascript" data-lang="javascript"><span class="p">{</span>
+  <span class="nx">type</span><span class="o">:</span> <span class="s1">&#39;list&#39;</span><span class="p">,</span>
+  <span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;framework&#39;</span><span class="p">,</span>
+  <span class="nx">message</span><span class="o">:</span> <span class="s1">&#39;What sort of site are you building?&#39;</span><span class="p">,</span>
+  <span class="nx">choices</span><span class="o">:</span> <span class="p">[</span>
+    <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;Static&quot;</span><span class="p">,</span> <span class="nx">value</span><span class="o">:</span> <span class="s2">&quot;static&quot;</span><span class="p">},</span>
+    <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="s2">&quot;Perch&quot;</span><span class="p">,</span> <span class="nx">value</span><span class="o">:</span> <span class="s2">&quot;perch&quot;</span><span class="p">}</span>
+  <span class="p">],</span>
+  <span class="k">default</span><span class="o">:</span> <span class="s1">&#39;static&#39;</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2>Generator prototype methods</h2>
+
+<p>By default generators created using <code>generator-generator</code> will have an <code>app</code> method, I cleared out the example commands <abbr title="and">&amp;</abbr> added the code below:</p>
+<div class="highlight"><pre><code class="javascript language-javascript" data-lang="javascript"><span class="nx">ParkjiVanillaGenerator</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">app</span> <span class="o">=</span> <span class="kd">function</span> <span class="nx">app</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">template</span><span class="p">(</span><span class="s1">&#39;package-config/_bower.json&#39;</span><span class="p">,</span> <span class="s1">&#39;bower.json&#39;</span><span class="p">);</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">template</span><span class="p">(</span><span class="s1">&#39;package-config/_package.json&#39;</span><span class="p">,</span> <span class="s1">&#39;package.json&#39;</span><span class="p">);</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">copy</span><span class="p">(</span><span class="s1">&#39;Gruntfile.js&#39;</span><span class="p">,</span> <span class="s1">&#39;Gruntfile.js&#39;</span><span class="p">);</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">directory</span><span class="p">(</span><span class="s1">&#39;stylesheets&#39;</span><span class="p">,</span> <span class="s1">&#39;stylesheets&#39;</span><span class="p">);</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">copy</span><span class="p">(</span><span class="s1">&#39;robots.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;web/robots.txt&#39;</span><span class="p">);</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">template</span><span class="p">(</span><span class="s1">&#39;humans.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;web/humans.txt&#39;</span><span class="p">);</span>
+
+  <span class="k">this</span><span class="p">.</span><span class="nx">mkdir</span><span class="p">(</span><span class="s1">&#39;web&#39;</span><span class="p">);</span>
+<span class="p">};</span>
+</code></pre></div>
+<p>Most of the calls in this are self-explanatory, but it&#39;s worth noting that <code>template</code> is special because it will inject the arguments into the file, if required. For example, the <code>_bower.json</code> template file I created has the line</p>
+<div class="highlight"><pre><code class="javascript language-javascript" data-lang="javascript"><span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;&lt;%= _.slugify(siteName) %&gt;&quot;</span><span class="p">,</span>
+</code></pre></div>
+<p><code>template()</code> will ensure that this becomes</p>
+<div class="highlight"><pre><code class="javascript language-javascript" data-lang="javascript"><span class="s2">&quot;name&quot;</span><span class="o">:</span> <span class="s2">&quot;the-name-entered-at-prompt-in-slug-format&quot;</span><span class="p">.</span>
+</code></pre></div>
+<p>There are other string commands that you can use, the docs for which can be seen <a href="https://github.com/epeli/underscore.string">here</a>.</p>
+
+<p>I decided to have different methods for each different website type with each one checking the chosen type before creating files if necessary. This seems to fit in with the yeoman way of doing things <abbr title="and">&amp;</abbr> it makes the code easier to follow since the code for each type is separate from the others.</p>
+<div class="highlight"><pre><code class="javascript language-javascript" data-lang="javascript"><span class="nx">ParkjiVanillaGenerator</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">installStatic</span> <span class="o">=</span> <span class="kd">function</span> <span class="nx">installStatic</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">framework</span> <span class="o">==</span> <span class="s1">&#39;static&#39;</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">copy</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">framework</span> <span class="o">+</span> <span class="s1">&#39;/gitignore&#39;</span><span class="p">,</span> <span class="s1">&#39;.gitignore&#39;</span><span class="p">)</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">template</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">framework</span> <span class="o">+</span> <span class="s1">&#39;/index.html&#39;</span><span class="p">,</span> <span class="s1">&#39;web/index.html&#39;</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">template</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">framework</span> <span class="o">+</span> <span class="s1">&#39;/vhost.conf&#39;</span><span class="p">,</span> <span class="s1">&#39;vhost.conf&#39;</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+
+<span class="nx">ParkjiVanillaGenerator</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">installPerch</span> <span class="o">=</span> <span class="kd">function</span> <span class="nx">installPerch</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">framework</span> <span class="o">==</span> <span class="s1">&#39;perch&#39;</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">copy</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">framework</span> <span class="o">+</span> <span class="s1">&#39;/gitignore&#39;</span><span class="p">,</span> <span class="s1">&#39;.gitignore&#39;</span><span class="p">)</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">template</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">framework</span> <span class="o">+</span> <span class="s1">&#39;/index.php&#39;</span><span class="p">,</span> <span class="s1">&#39;web/index.php&#39;</span><span class="p">);</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">template</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">framework</span> <span class="o">+</span> <span class="s1">&#39;/vhost.conf&#39;</span><span class="p">,</span> <span class="s1">&#39;vhost.conf&#39;</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">};</span>
+</code></pre></div>
+<h2>Running the generator</h2>
+
+<p>First up, it&#39;s important to note that if the generator isn&#39;t in the global <code>node_modules</code> directory, <code>yo</code> won&#39;t be able to find it, this can be fixed by running</p>
+<div class="highlight"><pre><code class="javascript language-javascript" data-lang="javascript"><span class="nx">npm</span> <span class="nx">link</span>
+</code></pre></div>
+<p>in the generator directory. It&#39;ll create a symlink to your generator in the global <code>node_modules</code> directory for you.</p>
+
+<p>Now the generator can be run with:</p>
+<div class="highlight"><pre><code class="javascript language-javascript" data-lang="javascript"><span class="nx">yo</span> <span class="nx">parkji</span><span class="o">-</span><span class="nx">vanilla</span>
+</code></pre></div>
+<p>Here&#39;s a <a href="http://showterm.io/3c9d423a1c0d85a6660a0">showterm</a> of this in action.</p>
+
+<h2>Tests</h2>
+
+<p>By default the <code>generator-generator</code> will create a <code>test</code> directory for you <abbr title="and">&amp;</abbr> add some example test files too. These tests use the <a href="http://visionmedia.github.io/mocha/">mocha</a> test framework. I found that I didn&#39;t really have to alter the example tests too much since my generator was very simple anyway. I did however want to check that the templated files had the correct <code>siteName</code> value inserted, this can be done by using an array with two values the first being the file name, the second being a regular expression that you expect be found within that file. E.g. my list of expected files for the static type looks like this:</p>
+<div class="highlight"><pre><code class="javascript language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">expected</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">[</span><span class="s1">&#39;web/index.html&#39;</span><span class="p">,</span> <span class="sr">/&lt;title&gt;Static Test&lt;\/title&gt;/</span><span class="p">],</span>
+    <span class="p">[</span><span class="s1">&#39;vhost.conf&#39;</span><span class="p">,</span> <span class="sr">/ServerName StaticTest\.localhost/</span><span class="p">],</span>
+    <span class="s1">&#39;.gitignore&#39;</span>
+<span class="p">];</span>
+</code></pre></div>
+<p>This array is then passed to the <code>helpers.assertFiles()</code> method.</p>
+
+<p>Here&#39;s the full test for the generic files that my generator should create:</p>
+<div class="highlight"><pre><code class="javascript language-javascript" data-lang="javascript"><span class="nx">it</span><span class="p">(</span><span class="s1">&#39;creates expected files&#39;</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">done</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">var</span> <span class="nx">expected</span> <span class="o">=</span> <span class="p">[</span>
+      <span class="p">[</span><span class="s1">&#39;bower.json&#39;</span><span class="p">,</span> <span class="sr">/&quot;name&quot;: &quot;testing&quot;/</span><span class="p">],</span>
+      <span class="p">[</span><span class="s1">&#39;package.json&#39;</span><span class="p">,</span> <span class="sr">/&quot;name&quot;: &quot;testing&quot;/</span><span class="p">],</span>
+      <span class="s1">&#39;Gruntfile.js&#39;</span><span class="p">,</span>
+      <span class="s1">&#39;web&#39;</span><span class="p">,</span>
+      <span class="s1">&#39;stylesheets&#39;</span><span class="p">,</span>
+      <span class="s1">&#39;web/robots.txt&#39;</span><span class="p">,</span>
+      <span class="p">[</span><span class="s1">&#39;web/humans.txt&#39;</span><span class="p">,</span> <span class="sr">/Testing/</span><span class="p">]</span>
+  <span class="p">];</span>
+
+  <span class="nx">helpers</span><span class="p">.</span><span class="nx">mockPrompt</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">app</span><span class="p">,</span> <span class="p">{</span>
+      <span class="s1">&#39;siteName&#39;</span><span class="o">:</span> <span class="s1">&#39;Testing&#39;</span>
+  <span class="p">});</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">app</span><span class="p">.</span><span class="nx">options</span><span class="p">[</span><span class="s1">&#39;skip-install&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
+  <span class="k">this</span><span class="p">.</span><span class="nx">app</span><span class="p">.</span><span class="nx">run</span><span class="p">({},</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+      <span class="nx">helpers</span><span class="p">.</span><span class="nx">assertFiles</span><span class="p">(</span><span class="nx">expected</span><span class="p">);</span>
+      <span class="nx">done</span><span class="p">();</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</code></pre></div>
+<p>The tests can be run by executing</p>
+<div class="highlight"><pre><code class="javascript language-javascript" data-lang="javascript"><span class="nx">npm</span> <span class="nx">test</span>
+</code></pre></div>
+<p>Also, the <code>generator-generator</code> will create a travis config file for you, which means that you can hook your repo up to it <abbr title="and">&amp;</abbr> have continuous integration.</p>
+
+<h2>Repository</h2>
+
+<p>My generator can be found on github - <a href="https://github.com/parkji/generator-parkji-vanilla">https://github.com/parkji/generator-parkji-vanilla</a>.</p>
+
+                <h2>Comments</h2>
+                <div id="disqus_thread"></div>
+                <script type="text/javascript">
+                    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                    var disqus_shortname = 'parkjiblog'; // required: replace example with your forum shortname
+
+                    // The following are highly recommended additional parameters. Remove the slashes in front to use.
+                    // var disqus_identifier = 'unique_dynamic_id_1234';
+                    // var disqus_url = 'http://example.com/permalink-to-page.html';
+
+                    /* * * DON'T EDIT BELOW THIS LINE * * */
+                    (function() {
+                        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                        dsq.src = 'http://' + disqus_shortname + '.disqus.com/embed.js';
+                        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                    })();
+                </script>
+                <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+                <a href="http://disqus.com" class="dsq-brlink">blog comments powered by <span class="logo-disqus">Disqus</span></a>
+            </article>
+                <section class="grid--item one-quarter mobile-one-whole">
+                    <h2>About ParkJi</h2>
+                    <p><img class="standout" src="/images/me.jpg" alt="Me!" /></p>
+                    <p>My name is Ben Parker, I'm a 25 year old PHP web developer with a passion for web design, standards &amp; new &amp; innovative technologies.</p>
+                </section>
+            </div><!-- end .grid -->
+        </div><!-- End .wrapper -->
+        <footer class="site-footer">
+            <p>
+                &copy; Ben Parker 2014
+            </p>
+            <p>
+                Powered by <a href="http://pages.github.com" title="Github Pages">github:pages</a> &amp; <a href="https://github.com/mojombo/jekyll/wiki" title="Jekyll">Jekyll</a>
+            </p>
+        </footer>
+        
+            <script src="http://assets.parkji.co.uk/js/prism.min.js"></script>
+        
+    </body>
+</html>    

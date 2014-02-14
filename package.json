@@ -1,0 +1,44 @@
+{
+  "name": "article-title",
+  "version": "0.0.0",
+  "description": "Extract the article title of a HTML document",
+  "license": "MIT",
+  "repository": "sindresorhus/article-title",
+  "bin": {
+    "article-title": "cli.js"
+  },
+  "author": {
+    "name": "Sindre Sorhus",
+    "email": "sindresorhus@gmail.com",
+    "url": "http://sindresorhus.com"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  },
+  "scripts": {
+    "test": "mocha"
+  },
+  "files": [
+    "index.js",
+    "cli.js"
+  ],
+  "keywords": [
+    "cli",
+    "bin",
+    "article",
+    "title",
+    "post",
+    "page",
+    "heading",
+    "extract",
+    "parse",
+    "find",
+    "infer"
+  ],
+  "dependencies": {
+    "cheerio": "~0.13.1"
+  },
+  "devDependencies": {
+    "mocha": "*"
+  }
+}

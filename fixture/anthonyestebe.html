@@ -1,0 +1,315 @@
+
+<!DOCTYPE HTML>
+
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<title>What is Yeoman</title>
+	<meta name="author" content="Anthony Estebe">
+
+	
+	<meta name="description" content="What Is Yeoman I just realized I&rsquo;d never talked about some tools like Yo, Grunt or Bower so today I will fix this and I will talk about Yeoman &hellip;">
+	<meta name="keywords" content="yeoman yo generator generate bootstrap scaffolding grunt bower javascript development tools tool">
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+
+  <link href="/atom.xml" rel="alternate" title="Anthony Estebe" type="application/atom+xml">
+  
+  <link rel="canonical" href="http://microblog.anthonyestebe.com/2014-01-20/what-is-yeoman/">
+  
+  <meta property="og:title" content="What is Yeoman">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="http://microblog.anthonyestebe.com/2014-01-20/what-is-yeoman/">
+  <meta property="og:site_name" content="Anthony Estebe">
+  <meta property="og:description" content="What Is Yeoman I just realized I&rsquo;d never talked about some tools like Yo, Grunt or Bower so today I will fix this and I will talk about Yeoman &hellip;">
+  <meta name="twitter:card" value="summary">
+  <meta name="twitter:site" value="antho1404">
+  <meta name="twitter:creator" value="antho1404">
+  <meta name="twitter:url" value="http://microblog.anthonyestebe.com/2014-01-20/what-is-yeoman/">
+  <meta name="twitter:title" value="What is Yeoman">
+  <meta name="twitter:description" value="What Is Yeoman I just realized I&rsquo;d never talked about some tools like Yo, Grunt or Bower so today I will fix this and I will talk about Yeoman &hellip;">
+
+  <link href="http://anthonyestebe.com/" rel="author">
+  <meta content="yes" name="apple-mobile-web-app-capable">
+  <link href="https://plus.google.com/+AnthonyESTEBE" rel="publisher">
+
+  <link href="/favicon.png" rel="shortcut icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/stylesheets/font-awesome.min.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+	<script type="text/javascript">
+		var _gaq = _gaq || [];
+		_gaq.push(['_setAccount', 'UA-35364423-5']);
+		_gaq.push(['_trackPageview']);
+
+		(function() {
+			var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			// ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+			var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		})();
+	</script>
+
+
+</head>
+
+<head>
+
+
+<body>
+	<div class="container">
+		<div class="left-col">
+			<div class="intrude-less">
+			<header id="header" class="inner"><div class="profilepic">
+	
+	<script src="/javascripts/md5.js"></script>
+	<script type="text/javascript">
+		(function() {
+			var profilePic = document.getElementsByClassName("profilepic")[0];
+			var img   = document.createElement("img");
+			img.src   = "http://www.gravatar.com/avatar/" + MD5("contact@anthonyestebe.com") + "?s=160"
+			img.alt   = "Profile Picture"
+			img.style = "width: 160px;"
+			profilePic.appendChild(img);
+		})();
+	</script>
+	
+</div>
+<hgroup>
+  <h1><a href="/">Anthony Estebe</a></h1>
+  
+    <h2>Some tips about dev`</h2>
+  
+</hgroup>
+
+<nav id="main-nav"><ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+<nav id="sub-nav">
+	<div class="social">
+		
+			<a class="email" href="mailto:contact@anthonyestebe.com" title="Email">Email</a>
+		
+		
+		
+		
+			<a class="twitter" href="http://twitter.com/antho1404" title="Twitter">Twitter</a>
+		
+		
+			<a class="github" href="https://github.com/antho1404" title="GitHub">GitHub</a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+			<a class="rss" href="/atom.xml" title="RSS">RSS</a>
+		
+	</div>
+</nav>
+
+<nav id="recent-posts">
+  <h1>Recent Posts</h1>
+  <ul>
+    
+      <li class="post">
+        <a href="/2014-02-10/google-analytics-for-your-emails/">Google Analytics for Your Emails</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014-02-04/fetch-your-google-analytics-data-using-rails/">Fetch Your Google Analytics Data Using Rails</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014-01-27/watch-with-grunt/">Watch With Grunt</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014-01-25/what-is-yeoman-part-3-grunt/">What Is Yeoman - Part 3 Grunt</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014-01-23/what-is-yeoman-part-2-bower/">What Is Yeoman - Part 2 Bower</a>
+      </li>
+    
+  </ul>
+</section>
+
+</header>				
+			</div>
+		</div>	
+		<div class="mid-col">
+			
+				
+			
+			<div class="mid-col-container">
+				<div id="content" class="inner"><article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+	<h1 class="title" itemprop="name">What Is Yeoman</h1>
+	<div class="entry-content" itemprop="articleBody"><p>I just realized I&rsquo;d never talked about some tools like Yo, Grunt or Bower so today I will fix this and I will talk about <em>Yeoman</em>&hellip;</p>
+
+<p>First I saw on many blogs, poeple who are a bit confusing about <em>Yeoman</em>, <strong><em>Yeoman</em> is not a scaffolding tool</strong>, it is just an installer for 3 different tools:</p>
+
+<ul>
+<li><strong>Yo</strong>: This one is the scaffolding tool</li>
+<li><strong>Bower</strong>: A package manager for your front end</li>
+<li><strong>Grunt</strong>: A task runner</li>
+</ul>
+
+
+<div style="margin-top:20px;">
+  <img src="http://yeoman.io/assets/img/yeoman-logo.png" title="yeoman" alt="yeoman" style="float: left;width: 150px;margin: 0 20px;">
+
+  <p>Even if <em>Yo</em> and <em>Yeoman</em> starts with the same letter it&#8217;s not a reason to mix them together ;) I think this confusion come because the same team is working on <em>Yo</em> and on <em>Yeoman</em> and moreover <em>Yo</em> generate configuration for bower and grunt which is some tools of <em>Yeoman</em> workflow. Anyway, this is close but keep thinking <em>Yeoman</em> is not a scaffolding tool but just a kind of workflow including awesome tools.</p>
+</div>
+
+
+
+
+<!-- more -->
+
+
+<p>This post will be in 3 post, one for each tools.</p>
+
+<h4>Yo:</h4>
+
+<p><em>Yo</em> is the first tool of <em>Yeoman</em>, this tool is a scaffolding for your application.</p>
+
+<p>Let&rsquo;s say you need to create a new application, for example an angular application with an expressjs server, <em>yo</em> will help you to startup your project, organize all your files, configure everything and even install some tools to be more productive like SASS or Coffee.</p>
+
+<p>To do that, first you need to install <em>yo</em> with <code>npm install -g yo</code> and you&rsquo;re lucky because this will also install Bower and Grunt for the next parts ;)</p>
+
+<p>Ok after that you need to find the right generator <a href="http://yeoman.io/community-generators.html">here</a>. And good there is one <em>angular-fullstack</em> (AngularJS with an Express server), exactly what we want.</p>
+
+<p>To install it, you can just run <code>npm install -g generator-angular-fullstack</code>.</p>
+
+<p>Now your generator is installed so we just have to generate our new app.</p>
+
+<p>With the <code>yo</code> command you will be able to see all the generators already installed and when you select one this will run the generator, so select the one <em>Angular-fullstack</em> or type directly <code>yo angular-fullstack</code>.</p>
+
+<p>That&rsquo;s it, now you just have to answer to the questions and your application will be generate.</p>
+
+<p><img src="http://i42.tinypic.com/2rc72m8.jpg" title="generator questions" alt="generator questions" /></p>
+
+<p>With this generator you will have:</p>
+
+<ul>
+<li>Your express server created</li>
+<li>Your tests with karma</li>
+<li>Your config for database and different environments</li>
+<li>Your routes for your server</li>
+<li>Your models</li>
+<li>Your controllers</li>
+<li>Your views</li>
+<li>Your style</li>
+<li>Your Angular application (routes, directives, controllers, services)</li>
+</ul>
+
+
+<p>And in bonus you will have</p>
+
+<ul>
+<li>Your Bower configured</li>
+<li>Your Grunt configured</li>
+</ul>
+
+
+<p>So with this you saved many hours to organize and configure your new project and even now your project is ready to be deployed thanks to grunt but we will see that in a different post.</p>
+
+<p><em>Yo</em> is really an awesome tool and the list of generator is really good. For now there is <a href="http://yeoman.io/community-generators.html">468 generators</a> for everything, you can have a chrome extension, a worpress, a firefox os app, threejs app&hellip; really impressive, just have a look.</p>
+
+<p><a href="/2014-01-23/what-is-yeoman-part-2-bower">See part 2: Bower</a></p>
+</div>
+
+</article>
+
+		
+<div class="share">
+
+  
+  <a href="//twitter.com/share" 
+     class="twitter-share-button" 
+     data-text="What is Yeoman"
+     data-lang="en"
+     data-related="antho1404"
+     data-hashtags="tools, yeoman, yo"
+     data-url="http://microblog.anthonyestebe.com/2014-01-20/what-is-yeoman/" 
+     data-counturl="http://microblog.anthonyestebe.com/2014-01-20/what-is-yeoman/">Tweet</a>
+  
+  
+  
+</div>
+
+
+
+<section id="comment">
+    <h1 class="title">Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+</section>
+</div>
+			</div>
+			<footer id="footer" class="inner"><p>
+  Copyright &copy; 2014 - Anthony Estebe -
+  <!-- <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span> -->
+</p>
+
+<!-- Design credit: <a href="http://shashankmehta.in/archive/2012/greyshade.html">Shashank Mehta</a> --></footer>
+			
+
+<script type="text/javascript">
+      var disqus_shortname = 'microblog-anthonyestebe';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://microblog.anthonyestebe.com/2014-01-20/what-is-yeoman/';
+        var disqus_url = 'http://microblog.anthonyestebe.com/2014-01-20/what-is-yeoman/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+		</div>
+	</div>
+</body>
+</html>

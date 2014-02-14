@@ -1,0 +1,159 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7 wf-inactive" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7 lt-ie9 lt-ie8 wf-inactive" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8 lt-ie9 wf-inactive" lang="en"> <![endif]-->
+<!-- Consider adding a manifest.appcache: h5bp.com/d/Offline -->
+<!--[if gt IE 8]><!--> <html class="no-js wf-inactive" lang="en"> <!--<![endif]-->
+  <head>
+  <meta charset="utf-8">
+  <!-- Mobile viewport optimisation -->
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+
+  <link rel="shortcut icon" href="http://rhumaric.com/wp-content/themes/rhumaric/favicon.ico" />
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="http://rhumaric.com/wp-content/themes/rhumaric/style.css" />
+
+  <!-- RSS link -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="http://rhumaric.com/feed">
+  
+  <script src="http://rhumaric.com/wp-content/themes/rhumaric/js/lib/html5shiv-printshiv.js"></script>
+
+  <!-- Typekit -->
+  <script type="text/javascript" src="http://use.typekit.com/xjs2hio.js"></script>
+  <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+    <title>
+         Building a Yeoman generator      | 
+      Rhumaric, pixel distiller    </title>
+  </head>
+  <body class="single single-post postid-452 single-format-standard" >
+  <header class="page-header">
+    <div class="container">
+    <a href="http://rhumaric.com" title="Home page" class="logo">
+      <img width="232" height="82" src="http://rhumaric.com/wp-content/themes/rhumaric/images/rhumaric-logo.png" alt="Rhumaric, pixel distiller" />
+    </a>
+    <nav class="main-navigation">
+  <a class="visuallyhidden focusable" tabindex="1" href="#content">Skip to content</a>
+
+    <ul>
+        <li><a href="http://rhumaric.com/portfolio/">Portfolio</a></li>
+        <li><a href="http://rhumaric.com/2014/02/quick-tip-console-logs-with-conditional-breakpoints/">Journal</a></li>
+        <li><a href="http://rhumaric.com/about-me/">About me</a></li>
+        <li><a href="mailto:hello@rhumaric.com">Contact</a></li>
+        </ul>
+</nav>
+
+    </div>
+  </header>
+  <section id="content" class="page-content">
+<article class="post-452 post type-post status-publish format-standard hentry category-uncategorized">
+  <header>
+    <h1>Building a Yeoman generator</h1>
+    <time class="sub-heading" pubdate datetime="2014-01-15T21:57:59+00:00">15 Jan 2014</time>
+  </header>
+  <div class="content">
+    <p>I&#39;m taking a quick break from the shiny land of CSS animations. Back to the black and white (or green and white, or whatever your console colors are) land of workflow automation, with a quick explanation of what it took to build my first generator for <a href="http://yeoman.io/">Yeoman</a>: <a href="https://github.com/rhumaric/generator-playground">generator-playground</a>.</p>
+<h2 id="a-bit-of-context">A bit of context</h2>
+<p>I got tired of always repeating the same steps when I wanted to make a quick HTML/CSS/JS experiment or example. JSBin, JSFiddle and the like are great online tools, but sometimes, I prefer my good ol&#39; text editor on my machine. This was a great pretext to finally give a good go at Yeoman and see if it could help me automatically scaffold a few things here (that's what it's meant for after all).</p><p>My requirements where pretty limited (it was my first go with Yeoman after all):</p>
+<ul>
+<li>create an HTML, CSS and JS file with the appropriate <code>&lt;link&gt;</code> and <code>&lt;script&gt;</code> tag to glue them together</li><li>optionally include <code>normalize.css</code> and <code>jQuery</code> if asked for</li><li>have a Grunt build providing an Express server to host the projects file, and most importantly livereload</li><li>create a Git repo, so I can tag specific steps in an example or just in case what started as an experiment finally grows bigger (I could probably have added a question for this) </li></ul>
+<p>This was already enough to get a nice overview of how Yeoman works and various features to build a generator. </p>
+<h2 id="a-quick-try-?">A quick try ?</h2>
+<p>Curious and want to give the final a try? That can easily be arranged! You&#39;ll need <a href="http://nodejs.org">node.js</a> on your machine, one shell command (might need to <code>sudo</code>), and that&#39;s about it for the installation:</p><div class="highlight"><pre><span class="err">$</span> <span class="n">npm</span> <span class="n">install</span> <span class="o">-</span><span class="n">g</span> <span class="n">generator</span><span class="o">-</span><span class="n">playground</span>
+</pre></div><p>The generator relies on Yeoman (obviously), Grunt and Bower to work properly. They will get installed along if you don&#39;t have them already (yeah for the <code>peerDependencies</code> property of <code>package.json</code>!!!).</p><p>Once you&#39;ve got the generator installed, head over to the folder you want to create the files in and go:</p><div class="highlight"><pre><span class="err">$</span> <span class="n">yo</span> <span class="n">playground</span>
+</pre></div><p>This should have got you ready to hack: the project files have been created in the folder, and if you run <code>grunt server</code>, the server hosting the project will star and your browser should open (a new tab, maybe) <code>http://localhost:9000</code>.</p>
+<h2 id="a-look-under-the-hood">A look under the hood</h2>
+<p>For those of you who made it back safely to the article and didn&#39;t get stuck hacking on the project they just generated, here comes the details on how things work (not necessarily in the order I got them to work).</p>
+<h3 id="getting-started">Getting started</h3>
+<p>Getting a project for a Yeoman generator started was really quick. Yeoman is a project to scaffold stuff, so they&#39;ve got something to scaffold a <a href="https://github.com/yeoman/generator-generator">Yeoman generator project: <code>generator-generator</code></a>. A quick <code>npm</code> and <code>yo</code> commands later, I had a skeleton for my generator project.</p>
+<h3 id="testing-it-out">Testing it out</h3>
+<p>Good code is tested code, and I didn&#39;t want the generator to escape this mantra. The generated project came with a couple of test samples in the <code>test</code> folder. They where pretty handy to discover the helpers for running the generator from inside a test, simulating prompt answers or assert that files get copied properly. </p><p>The &quot;Run the generator with a set of prompt answers and validate what comes out in the output folder&quot; seemed to be a good enough strategy, as my generator didn&#39;t have too many options. Makes a <a href="https://github.com/rhumaric/generator-playground/blob/master/test/test-creation.js">nice little test suite</a> that can be run by Travis CI.</p>
+<h3 id="prompting-the-user">Prompting the user</h3>
+<p>This is something I find really awesome: fancy command line prompts. Not just asking your user &quot;Hey, what&#39;s your name?&quot;, but providing defaults, having different kind of prompts (command line checkboxes, anyone?)... I find this definitely more enjoyable than forcing your user to pass a heavy sequence arguments (though, you probably want to have both).</p><p>And it's even more enjoyable when your generator class already has that built in a handy <code>prompt()</code> method. I didn&#39;t get to go too fancy for the playground generator, though, <a href="https://github.com/rhumaric/generator-playground/blob/master/app/index.js#L19">only a couple of yes/no questions were required</a>.</p>
+<h3 id="generating-the-project-files">Generating the project files</h3>
+<p>This is definitely the main task of a Yeoman generator: creating files, folders... The strategy here seems to be to have a <a href="https://github.com/rhumaric/generator-playground/tree/master/app/templates"><code>templates</code> directory</a> in your project, from which your generator will copy the files to whatever destination they&#39;re supposed to end up at (your generator has a handy <code>copy()</code> method just for that).</p><p>Sometimes, you&#39;ll want to do a bit more than a plain copy, maybe include/exclude parts of the files according to the answers of the prompt(s). That&#39;s when the <code>template()</code> method comes in. It uses your files as a template (<a href="http://underscorejs.org/#template">underscore flavour</a>, I think) for what will get in the destination file.</p>
+<h3 id="git-setup">Git setup</h3>
+<p>The <a href="https://github.com/rhumaric/generator-playground/blob/master/app/index.js#L56">git repository setup</a> (creating a repo and making a first commit with the project files) was the occasion to play a bit with the <a href="https://npmjs.org/package/async">async library</a> to coordinate calls to the <code>git</code> CLI. The massive one liner I had in mind apparently didn't cut it :(. This last step made the generator complete (at least for now).</p>
+<h2 id="wrapping-it-up">Wrapping it up</h2>
+<p>Building this generator ended up being a great way to discover Yeoman and how it makes its scaffolding happen. Hopefully, I&#39;ll get to extend this first project with a few dream features I had to leave aside: support for preprocessor, CSS &amp; JS linting or even getting rid of the dependency for grunt and bower (to scaffold project offline). </p><p>Thanks for reading this till the end, I hope you enjoyed it, learnt little tricks or maybe got ideas for your own Yeoman generator. Happy coding ;)</p>  </div>
+  <nav class="prev-next" id="prev-next">
+    <a class="previous" href="http://rhumaric.com/2013/12/apparition-and-css-animations/" title="Apparition and CSS Animations">
+      <span>Apparition and CSS Animations</span></a>
+    <a class="next" href="http://rhumaric.com/2014/01/livereload-magic-gulp-style/" title="Livereload magic, Gulp style!">
+      <span>Livereload magic, Gulp style!</span>
+    </a>
+</nav>
+<!--[if gte IE 7]>-->
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'rhumaricpixeldistiller'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+    <!-- <![endif] -->
+</article>
+    </section> <!-- /.home-content -->
+    <footer class="page-footer">
+     <ul class="social">
+                <li><a href="http://www.linkedin.com/in/rhumaric" rel="me" class="linked in">Linked In</a></li>
+                <li><a href="http://flickr.com/rhumaric" rel="me" class="flickr">Flickr</a></li>
+                <li><a href="http://pinterest.com/rhumaric/pins" rel="me" class="pinterest">Pinterest</a></li>
+                <li><a href="http://twitter.com/rhumaric" rel="me" class="twitter">Twitter</a></li>
+              </ul>
+    </footer>
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="http://rhumaric.com/wp-content/themes/rhumaric/js/lib/jquery-1.7.0.min.js"><\/script>')</script>
+
+    <!-- Underscore.js -->
+    <script src="http://rhumaric.com/wp-content/themes/rhumaric/js/lib/underscore-1.2.2.min.js"></script>
+
+    <!-- Google Analytics -->
+    <script>
+      var _gaq=[['_setAccount','UA-23982145-1'],['_trackPageview']];
+      (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+      g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+      s.parentNode.insertBefore(g,s)}(document,'script'));
+    </script>
+    <script>
+            (function($,undefined){
+
+              $(function(){
+                  
+                  $('.liked-it a').on('click',function(e){
+                      _gaq.push(['_trackEvent', 'Call to action', 'Mail']);
+                    });
+                })
+             }
+                )(jQuery)
+    </script>
+
+    <script>
+            (function($,undefined){
+
+              function adjustStripeBackground(){
+
+                    var element = $('.liked-it');
+                    if(element.length > 0) {
+                      var elementOffset = element.offset();
+                      var backgroundTopOffset =  -(elementOffset.top%10);
+                      var backgroundLeftOffset = -(elementOffset.left%10);
+                      element.css('background-position', backgroundLeftOffset+'px '+backgroundTopOffset+'px');
+                    }
+                }
+
+              $(function(){
+                $(window).on('resize',_.throttle(adjustStripeBackground,100));
+                adjustStripeBackground();
+                });
+              })(jQuery);
+    </script>
+  </body>
+</html>
