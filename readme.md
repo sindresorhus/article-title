@@ -7,8 +7,8 @@ It's often quite hard to get the actual title of an article from a page as autho
 
 ## Install
 
-```
-npm install --save article-title
+```bash
+$ npm install --save article-title
 ```
 
 
@@ -27,21 +27,21 @@ articleTitle(htmlDocument);
 
 You can also use it as a CLI app by installing it globally:
 
-```
-npm install --global article-title
+```bash
+$ npm install --global article-title
 ```
 
 ### Usage
 
-```
+```bash
 $ article-title -h
 
 article-title <html-document>
-or
+# or
 cat <html-document> | article-title
 ```
 
 
 ## License
 
-MIT © [Sindre Sorhus](http://sindresorhus.com)
+[MIT](http://opensource.org/licenses/MIT) © [Sindre Sorhus](http://sindresorhus.com)
