@@ -17,5 +17,5 @@ module.exports = function (html) {
 		title = heading;
 	}
 
-	return title.replace(/\r?\n|\r/g, '').trim();
+	return title.replace(/\r?\n|\r/g, '').replace(/\s+/g, ' ').trim();
 };
