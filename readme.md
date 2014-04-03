@@ -1,4 +1,4 @@
-# article-title [![Build Status](https://travis-ci.org/sindresorhus/article-title.png?branch=master)](https://travis-ci.org/sindresorhus/article-title)
+# article-title [![Build Status](https://travis-ci.org/sindresorhus/article-title.svg?branch=master)](https://travis-ci.org/sindresorhus/article-title)
 
 > Extract the article title of a HTML document
 
