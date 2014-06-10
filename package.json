@@ -36,7 +36,7 @@
     "infer"
   ],
   "dependencies": {
-    "cheerio": "~0.13.1"
+    "cheerio": "^0.16.0"
   },
   "devDependencies": {
     "mocha": "*"
