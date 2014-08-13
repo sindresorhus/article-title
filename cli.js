@@ -1,40 +1,48 @@
 #!/usr/bin/env node
 'use strict';
 var fs = require('fs');
-var articleTitle = require('./index');
-var input = process.argv[2];
-
-function stdin(cb) {
-	var ret = '';
-	process.stdin.setEncoding('utf8');
-	process.stdin.on('data', function (data) { ret += data });
-	process.stdin.on('end', function () { cb(ret) }).resume();
-}
+var stdin = require('get-stdin');
+var pkg = require('./package.json');
+var articleTitle = require('./');
+var argv = process.argv.slice(2);
+var input = argv[0];
 
 function help() {
-	console.log('article-title <html-document>');
-	console.log('or');
-	console.log('cat <html-document> | article-title');
+	console.log([
+		'',
+		'  ' + pkg.description,
+		'',
+		'  Usage',
+		'    article-title <file>',
+		'    curl <url> | article-title',
+		'',
+		'  Example',
+		'    curl http://updates.html5rocks.com/2014/06/Automating-Web-Performance-Measurement | article-title',
+		'    Automating Web Performance Measurement'
+	].join('\n'));
 }
 
-if (process.argv.indexOf('-h') !== -1 || process.argv.indexOf('--help') !== -1) {
+function init(data) {
+	console.log(articleTitle(data));
+}
+
+if (argv.indexOf('--help') !== -1) {
 	help();
 	return;
 }
 
-if (process.argv.indexOf('-v') !== -1 || process.argv.indexOf('--version') !== -1) {
-	console.log(require('./package').version);
+if (argv.indexOf('--version') !== -1) {
+	console.log(pkg.version);
 	return;
 }
 
 if (process.stdin.isTTY) {
 	if (!input) {
-		return help();
+		help();
+		return;
 	}
 
-	console.log(articleTitle(fs.readFileSync(input, 'utf8')));
+	init(fs.readFileSync(input, 'utf8'));
 } else {
-	stdin(function (data) {
-		console.log(articleTitle(data));
-	});
+	stdin(init);
 }

@@ -7,7 +7,7 @@ It's often quite hard to get the actual title of an article from a page as autho
 
 ## Install
 
-```bash
+```sh
 $ npm install --save article-title
 ```
 
@@ -25,23 +25,23 @@ articleTitle(htmlDocument);
 
 ## CLI
 
-You can also use it as a CLI app by installing it globally:
-
-```bash
+```sh
 $ npm install --global article-title
 ```
 
-### Usage
+```sh
+$ article-title --help
 
-```bash
-$ article-title -h
+  Usage
+    article-title <file>
+    curl <url> | article-title
 
-article-title <html-document>
-# or
-cat <html-document> | article-title
+  Example
+    curl http://updates.html5rocks.com/2014/06/Automating-Web-Performance-Measurement | article-title
+    Automating Web Performance Measurement
 ```
 
 
 ## License
 
-[MIT](http://opensource.org/licenses/MIT) © [Sindre Sorhus](http://sindresorhus.com)
+MIT © [Sindre Sorhus](http://sindresorhus.com)

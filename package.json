@@ -4,13 +4,13 @@
   "description": "Extract the article title of a HTML document",
   "license": "MIT",
   "repository": "sindresorhus/article-title",
-  "bin": {
-    "article-title": "cli.js"
-  },
   "author": {
     "name": "Sindre Sorhus",
     "email": "sindresorhus@gmail.com",
     "url": "http://sindresorhus.com"
+  },
+  "bin": {
+    "article-title": "cli.js"
   },
   "engines": {
     "node": ">=0.10.0"
@@ -36,7 +36,8 @@
     "infer"
   ],
   "dependencies": {
-    "cheerio": "^0.16.0"
+    "cheerio": "^0.17.0",
+    "get-stdin": "^1.0.0"
   },
   "devDependencies": {
     "mocha": "*"

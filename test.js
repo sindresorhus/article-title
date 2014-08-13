@@ -2,7 +2,7 @@
 var path = require('path');
 var assert = require('assert');
 var fs = require('fs');
-var articleTitle = require('./index');
+var articleTitle = require('./');
 
 function assertHTML(file, result) {
 	var html = fs.readFileSync(path.join('fixture', file + '.html'), 'utf8');
