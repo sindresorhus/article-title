@@ -12,7 +12,7 @@ $ npm install --save article-title
 ```
 
 
-## Example
+## Usage
 
 ```js
 var articleTitle = require('article-title');
