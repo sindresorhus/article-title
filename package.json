@@ -36,8 +36,8 @@
     "infer"
   ],
   "dependencies": {
-    "cheerio": "^0.17.0",
-    "get-stdin": "^1.0.0"
+    "cheerio": "^0.18.0",
+    "get-stdin": "^3.0.2"
   },
   "devDependencies": {
     "mocha": "*"
