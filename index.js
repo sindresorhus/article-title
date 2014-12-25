@@ -46,7 +46,7 @@ module.exports = function (html) {
 	var title = docTitle;
 	var heading = findSelectorMatch($);
 
-	if (heading.length > 5 && heading.length < 100) {
+	if (heading && heading.length > 5 && heading.length < 100) {
 		title = heading;
 	}
 
