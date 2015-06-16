@@ -22,4 +22,3 @@ it('should get article title from a HTML document', function () {
 	assertHTML('github-repo', 'urls-md');
 	assertHTML('youtube-wiki', 'Wikipedia: #Edit2014');
 });
-
