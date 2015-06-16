@@ -20,4 +20,6 @@ it('should get article title from a HTML document', function () {
 	assertHTML('tylerhenkel', 'Angular Fullstack 1.2.0 available now');
 	assertHTML('numediaweb', 'Web App with dream team; AngularJS, Cordova, Yeoman & Topcoat');
 	assertHTML('github-repo', 'urls-md');
+	assertHTML('youtube-wiki', 'Wikipedia: #Edit2014');
 });
+
