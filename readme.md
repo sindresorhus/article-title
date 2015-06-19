@@ -33,11 +33,11 @@ $ npm install --global article-title
 $ article-title --help
 
   Usage
-    article-title <file>
-    curl <url> | article-title
+    $ article-title <file>
+    $ curl <url> | article-title
 
   Example
-    curl http://updates.html5rocks.com/2014/06/Automating-Web-Performance-Measurement | article-title
+    $ curl http://updates.html5rocks.com/2014/06/Automating-Web-Performance-Measurement | article-title
     Automating Web Performance Measurement
 ```
 
