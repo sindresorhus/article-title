@@ -7,7 +7,7 @@ It's often quite hard to get the actual title of an article from a page as autho
 
 ## Install
 
-```sh
+```
 $ npm install --save article-title
 ```
 
@@ -15,21 +15,21 @@ $ npm install --save article-title
 ## Usage
 
 ```js
-var articleTitle = require('article-title');
-var htmlDocument = '<!doctype html><html><head><title>My awesome unicorn website</title></head><body><article><h1>How unicorns sleep</h1><p>...</p></body></html>';
+const articleTitle = require('article-title');
+const htmlDocument = '<!doctype html><html><head><title>My awesome unicorn website</title></head><body><article><h1>How unicorns sleep</h1><p>...</p></body></html>';
 
 articleTitle(htmlDocument);
-//=> How unicorns sleep
+//=> 'How unicorns sleep'
 ```
 
 
 ## CLI
 
-```sh
+```
 $ npm install --global article-title
 ```
 
-```sh
+```
 $ article-title --help
 
   Usage
