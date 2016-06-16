@@ -40,7 +40,7 @@ module.exports = function (html) {
 
 	var docTitle = $('title').text().replace(/\r?\n|\r/g, '');
 	docTitle = (/^[^\|\-\/•—]+/.exec(docTitle) || [])[0] || docTitle;
-	docTitle = ((docTitle || '').match(/\:(.*)/) || [])[1] || docTitle;
+	docTitle = ((docTitle || '').match(/:(.*)/) || [])[1] || docTitle;
 	docTitle = (docTitle || '').trim();
 
 	var title = docTitle;
