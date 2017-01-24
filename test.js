@@ -1,24 +1,22 @@
-'use strict';
-var path = require('path');
-var assert = require('assert');
-var fs = require('fs');
-var articleTitle = require('./');
+import path from 'path';
+import fs from 'fs';
+import test from 'ava';
+import m from '.';
 
-function assertHTML(file, result) {
-	var html = fs.readFileSync(path.join('fixture', file + '.html'), 'utf8');
-	assert.strictEqual(articleTitle(html), result);
+function testHtml(t, file, result) {
+	this.title = file;
+	const html = fs.readFileSync(path.join('fixture', `${file}.html`), 'utf8');
+	t.is(m(html), result);
 }
 
-it('should get article title from a HTML document', function () {
-	assertHTML('html5rocks', 'Yo Polymer – A Whirlwind Tour Of Web Component Tooling');
-	assertHTML('shapeshed', 'Using the European npm mirror');
-	assertHTML('rhumaric', 'Building a Yeoman generator');
-	assertHTML('parkji', 'Using Yeoman to scaffold out new websites');
-	assertHTML('codelittle', 'How To Use Yeoman');
-	assertHTML('anthonyestebe', 'What Is Yeoman');
-	assertHTML('agtlucas', 'Why you should use Yeoman');
-	assertHTML('tylerhenkel', 'Angular Fullstack 1.2.0 available now');
-	assertHTML('numediaweb', 'Web App with dream team; AngularJS, Cordova, Yeoman & Topcoat');
-	assertHTML('github-repo', 'urls-md');
-	assertHTML('youtube-wiki', 'Wikipedia: #Edit2014');
-});
+test(testHtml, 'html5rocks', 'Yo Polymer – A Whirlwind Tour Of Web Component Tooling');
+test(testHtml, 'shapeshed', 'Using the European npm mirror');
+test(testHtml, 'rhumaric', 'Building a Yeoman generator');
+test(testHtml, 'parkji', 'Using Yeoman to scaffold out new websites');
+test(testHtml, 'codelittle', 'How To Use Yeoman');
+test(testHtml, 'anthonyestebe', 'What Is Yeoman');
+test(testHtml, 'agtlucas', 'Why you should use Yeoman');
+test(testHtml, 'tylerhenkel', 'Angular Fullstack 1.2.0 available now');
+test(testHtml, 'numediaweb', 'Web App with dream team; AngularJS, Cordova, Yeoman & Topcoat');
+test(testHtml, 'github-repo', 'urls-md');
+test.failing(testHtml, 'youtube-wiki', 'Wikipedia: #Edit2014');

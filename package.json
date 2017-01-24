@@ -9,21 +9,16 @@
     "email": "sindresorhus@gmail.com",
     "url": "sindresorhus.com"
   },
-  "bin": "cli.js",
   "engines": {
-    "node": ">=0.10.0"
+    "node": ">=4"
   },
   "scripts": {
-    "test": "mocha"
+    "test": "xo && ava"
   },
   "files": [
-    "index.js",
-    "cli.js"
+    "index.js"
   ],
   "keywords": [
-    "cli-app",
-    "cli",
-    "bin",
     "article",
     "title",
     "post",
@@ -32,14 +27,15 @@
     "extract",
     "parse",
     "find",
-    "infer"
+    "infer",
+    "website",
+    "blog"
   ],
   "dependencies": {
-    "cheerio": "^0.19.0",
-    "get-stdin": "^4.0.1",
-    "meow": "^3.3.0"
+    "cheerio": "^0.22.0"
   },
   "devDependencies": {
-    "mocha": "*"
+    "ava": "*",
+    "xo": "*"
   }
 }

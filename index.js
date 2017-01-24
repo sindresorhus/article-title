@@ -1,7 +1,7 @@
 'use strict';
-var cheerio = require('cheerio');
+const cheerio = require('cheerio');
 
-var matchers = [
+const matchers = [
 	'.instapaper_title',
 	'article h1',
 	'.entry-content h1',
@@ -21,30 +21,28 @@ var matchers = [
 	'.type-post h1'
 ];
 
-function clean (str) {
-	return str.replace(/\r?\n|\r/g, '').replace(/\s+/g, ' ').trim();
-}
+const clean = str => str.replace(/\r?\n|\r/g, '').replace(/\s+/g, ' ').trim();
 
-function findSelectorMatch($) {
-	for (var i = 0; i < matchers.length; i++) {
-		var el = $(matchers[i]).first().text().trim();
+const findSelectorMatch = $ => {
+	for (const matcher of matchers) {
+		const el = $(matcher).first().text().trim();
 
 		if (el && el.length > 0) {
 			return el;
 		}
 	}
-}
+};
 
-module.exports = function (html) {
-	var $ = cheerio.load(html);
+module.exports = html => {
+	const $ = cheerio.load(html);
 
-	var docTitle = $('title').text().replace(/\r?\n|\r/g, '');
-	docTitle = (/^[^\|\-\/•—]+/.exec(docTitle) || [])[0] || docTitle;
+	let docTitle = $('title').text().replace(/\r?\n|\r/g, '');
+	docTitle = (/^[^|\-/•—]+/.exec(docTitle) || [])[0] || docTitle;
 	docTitle = ((docTitle || '').match(/:(.*)/) || [])[1] || docTitle;
 	docTitle = (docTitle || '').trim();
 
-	var title = docTitle;
-	var heading = findSelectorMatch($);
+	let title = docTitle;
+	const heading = findSelectorMatch($);
 
 	if (heading && heading.length > 5 && heading.length < 100) {
 		title = heading;
