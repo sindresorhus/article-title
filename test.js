@@ -1,13 +1,14 @@
 import path from 'path';
 import fs from 'fs';
 import test from 'ava';
-import m from '.';
+import articleTitle from '.';
 
 function testHtml(t, file, result) {
-	this.title = file;
 	const html = fs.readFileSync(path.join('fixture', `${file}.html`), 'utf8');
-	t.is(m(html), result);
+	t.is(articleTitle(html), result);
 }
+
+testHtml.title = (providedTitle, file) => file;
 
 test(testHtml, 'html5rocks', 'Yo Polymer – A Whirlwind Tour Of Web Component Tooling');
 test(testHtml, 'shapeshed', 'Using the European npm mirror');

@@ -1,41 +1,42 @@
 {
-  "name": "article-title",
-  "version": "2.0.0",
-  "description": "Extract the article title of a HTML document",
-  "license": "MIT",
-  "repository": "sindresorhus/article-title",
-  "author": {
-    "name": "Sindre Sorhus",
-    "email": "sindresorhus@gmail.com",
-    "url": "sindresorhus.com"
-  },
-  "engines": {
-    "node": ">=4"
-  },
-  "scripts": {
-    "test": "xo && ava"
-  },
-  "files": [
-    "index.js"
-  ],
-  "keywords": [
-    "article",
-    "title",
-    "post",
-    "page",
-    "heading",
-    "extract",
-    "parse",
-    "find",
-    "infer",
-    "website",
-    "blog"
-  ],
-  "dependencies": {
-    "cheerio": "^0.22.0"
-  },
-  "devDependencies": {
-    "ava": "*",
-    "xo": "*"
-  }
+	"name": "article-title",
+	"version": "2.0.0",
+	"description": "Extract the article title of a HTML document",
+	"license": "MIT",
+	"repository": "sindresorhus/article-title",
+	"funding": "https://github.com/sponsors/sindresorhus",
+	"author": {
+		"name": "Sindre Sorhus",
+		"email": "sindresorhus@gmail.com",
+		"url": "sindresorhus.com"
+	},
+	"engines": {
+		"node": ">=10"
+	},
+	"scripts": {
+		"test": "xo && ava"
+	},
+	"files": [
+		"index.js"
+	],
+	"keywords": [
+		"article",
+		"title",
+		"post",
+		"page",
+		"heading",
+		"extract",
+		"parse",
+		"find",
+		"infer",
+		"website",
+		"blog"
+	],
+	"dependencies": {
+		"cheerio": "^0.22.0"
+	},
+	"devDependencies": {
+		"ava": "^2.4.0",
+		"xo": "^0.25.0"
+	}
 }

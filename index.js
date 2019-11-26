@@ -21,14 +21,14 @@ const matchers = [
 	'.type-post h1'
 ];
 
-const clean = str => str.replace(/\r?\n|\r/g, '').replace(/\s+/g, ' ').trim();
+const clean = string => string.replace(/\r?\n/g, '').replace(/\s+/g, ' ').trim();
 
 const findSelectorMatch = $ => {
 	for (const matcher of matchers) {
-		const el = $(matcher).first().text().trim();
+		const element = $(matcher).first().text().trim();
 
-		if (el && el.length > 0) {
-			return el;
+		if (element && element.length > 0) {
+			return element;
 		}
 	}
 };
@@ -36,12 +36,12 @@ const findSelectorMatch = $ => {
 module.exports = html => {
 	const $ = cheerio.load(html);
 
-	let docTitle = $('title').text().replace(/\r?\n|\r/g, '');
-	docTitle = (/^[^|\-/•—]+/.exec(docTitle) || [])[0] || docTitle;
-	docTitle = ((docTitle || '').match(/:(.*)/) || [])[1] || docTitle;
-	docTitle = (docTitle || '').trim();
+	let documentTitle = $('title').text().replace(/\r?\n/g, '');
+	documentTitle = (/^[^|\-/•—]+/.exec(documentTitle) || [])[0] || documentTitle;
+	documentTitle = (((documentTitle || '').match(/:(?<documentTitle>.*)/) || []).groups || '').documentTitle || documentTitle;
+	documentTitle = (documentTitle || '').trim();
 
-	let title = docTitle;
+	let title = documentTitle;
 	const heading = findSelectorMatch($);
 
 	if (heading && heading.length > 5 && heading.length < 100) {
