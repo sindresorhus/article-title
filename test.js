@@ -20,4 +20,5 @@ test(testHtml, 'agtlucas', 'Why you should use Yeoman');
 test(testHtml, 'tylerhenkel', 'Angular Fullstack 1.2.0 available now');
 test(testHtml, 'numediaweb', 'Web App with dream team; AngularJS, Cordova, Yeoman & Topcoat');
 test(testHtml, 'github-repo', 'urls-md');
+test(testHtml, 'yahoo', 'Yahoo');
 test.failing(testHtml, 'youtube-wiki', 'Wikipedia: #Edit2014');
