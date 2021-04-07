@@ -1,5 +1,4 @@
-'use strict';
-const cheerio = require('cheerio');
+import cheerio from 'cheerio';
 
 const matchers = [
 	'.instapaper_title',
@@ -33,7 +32,7 @@ const findSelectorMatch = $ => {
 	}
 };
 
-module.exports = html => {
+export default function articleTitle(html) {
 	const $ = cheerio.load(html);
 
 	let documentTitle = $('title').text().replace(/\r?\n/g, '');
@@ -49,4 +48,4 @@ module.exports = html => {
 	}
 
 	return clean(title);
-};
+}

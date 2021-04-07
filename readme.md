@@ -4,18 +4,16 @@
 
 It's often quite hard to get the actual title of an article from a page as authors either add a bunch of trash to `<title>` or don't use it at all. There's also no standardized way to indicate the title of an article in the markup. This module uses some heuristics to extract it cleanly.
 
-
 ## Install
 
 ```
 $ npm install article-title
 ```
 
-
 ## Usage
 
 ```js
-const articleTitle = require('article-title');
+import articleTitle from 'article-title';
 
 const html = `
 <!doctype html>
@@ -35,7 +33,6 @@ const html = `
 articleTitle(html);
 //=> 'How unicorns sleep'
 ```
-
 
 ## Related
 

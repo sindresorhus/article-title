@@ -1,7 +1,7 @@
 import path from 'path';
 import fs from 'fs';
 import test from 'ava';
-import articleTitle from '.';
+import articleTitle from './index.js';
 
 function testHtml(t, file, result) {
 	const html = fs.readFileSync(path.join('fixture', `${file}.html`), 'utf8');
