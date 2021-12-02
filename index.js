@@ -17,7 +17,7 @@ const matchers = [
 	'#page-post h1',
 	'.postheader h1',
 	'.postheader h2',
-	'.type-post h1'
+	'.type-post h1',
 ];
 
 const clean = string => string.replace(/\r?\n/g, '').replace(/\s+/g, ' ').trim();
