@@ -37,7 +37,6 @@ export default function articleTitle(html) {
 
 	let documentTitle = $('title').text().replace(/\r?\n/g, '');
 	documentTitle = (/^[^|\-/•—]+/.exec(documentTitle) || [])[0] || documentTitle;
-	documentTitle = (((documentTitle || '').match(/:(?<documentTitle>.*)/) || []).groups || '').documentTitle || documentTitle;
 	documentTitle = (documentTitle || '').trim();
 
 	let title = documentTitle;
