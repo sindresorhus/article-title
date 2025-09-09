@@ -1,6 +1,6 @@
 {
 	"name": "article-title",
-	"version": "4.1.0",
+	"version": "5.0.0",
 	"description": "Extract the article title of a HTML document",
 	"license": "MIT",
 	"repository": "sindresorhus/article-title",
