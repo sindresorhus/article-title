@@ -6,8 +6,8 @@ It's often quite hard to get the actual title of an article from a page as autho
 
 ## Install
 
-```
-$ npm install article-title
+```sh
+npm install article-title
 ```
 
 ## Usage
@@ -36,4 +36,4 @@ articleTitle(html);
 
 ## Related
 
-- [article-title-cli](https://github.com/sindresorhus/article-title-cli) - CLI for this module
+- [article-title-cli](https://github.com/sindresorhus/article-title-cli) - CLI for this package

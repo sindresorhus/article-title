@@ -11,15 +11,20 @@
 		"url": "https://sindresorhus.com"
 	},
 	"type": "module",
-	"exports": "./index.js",
+	"exports": {
+		"types": "./index.d.ts",
+		"default": "./index.js"
+	},
+	"sideEffects": false,
 	"engines": {
-		"node": ">=12"
+		"node": ">=20"
 	},
 	"scripts": {
 		"test": "xo && ava"
 	},
 	"files": [
-		"index.js"
+		"index.js",
+		"index.d.ts"
 	],
 	"keywords": [
 		"article",
@@ -35,10 +40,10 @@
 		"blog"
 	],
 	"dependencies": {
-		"cheerio": "^1.0.0-rc.10"
+		"cheerio": "^1.1.2"
 	},
 	"devDependencies": {
-		"ava": "^3.15.0",
-		"xo": "^0.47.0"
+		"ava": "^6.4.1",
+		"xo": "^1.2.2"
 	}
 }

@@ -1,4 +1,4 @@
-import cheerio from 'cheerio';
+import * as cheerio from 'cheerio';
 
 const matchers = [
 	'.instapaper_title',
@@ -20,7 +20,7 @@ const matchers = [
 	'.type-post h1',
 ];
 
-const clean = string => string.replace(/\r?\n/g, '').replace(/\s+/g, ' ').trim();
+const clean = string => string.replaceAll(/\r?\n/g, '').replaceAll(/\s+/g, ' ').trim();
 
 const findSelectorMatch = $ => {
 	for (const matcher of matchers) {
@@ -35,7 +35,7 @@ const findSelectorMatch = $ => {
 export default function articleTitle(html) {
 	const $ = cheerio.load(html);
 
-	let documentTitle = $('title').text().replace(/\r?\n/g, '');
+	let documentTitle = $('title').text().replaceAll(/\r?\n/g, '');
 	documentTitle = (/^[^|\-/•—]+/.exec(documentTitle) || [])[0] || documentTitle;
 	documentTitle = (documentTitle || '').trim();
 
